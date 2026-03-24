@@ -1,4 +1,4 @@
-#Prompt
+# Prompt
 **Role:** Act as a Creative Frontend Developer and UI Designer.
 **Goal:** Build a "Desktop OS" styled portfolio using **Vanilla HTML, CSS, and JavaScript**. The site should mimic a computer interface where different sections open as draggable, functional windows.
 
