@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alexandre Moreau — Portfolio OS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/desktop.css">
+  <link rel="stylesheet" href="css/taskbar.css">
+  <link rel="stylesheet" href="css/windows.css">
+  <link rel="stylesheet" href="css/apps.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-theme="dark">
+
+  <!-- Boot Screen -->
+  <div id="boot-screen">
+    <div class="boot-logo">
+      <div class="boot-ring"></div>
+      <div class="boot-inner">
+        <span class="boot-initials">AM</span>
+      </div>
+    </div>
+    <div class="boot-text">PortfolioOS <span class="boot-ver">v2.4.1</span></div>
+    <div class="boot-bar-wrap"><div class="boot-bar"></div></div>
+  </div>
+
+  <!-- Desktop -->
+  <div id="desktop">
+    <div id="wallpaper"></div>
+
+    <!-- Desktop Icons -->
+    <div id="icon-grid">
+      <div class="desktop-icon" data-app="about">
+        <div class="icon-img">
+          <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="16" r="8" fill="var(--accent-a)"/><path d="M8 40c0-8.837 7.163-16 16-16s16 7.163 16 16" stroke="var(--accent-a)" stroke-width="3" stroke-linecap="round"/></svg>
+        </div>
+        <span>À propos</span>
+      </div>
+      <div class="desktop-icon" data-app="projects">
+        <div class="icon-img">
+          <svg viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="28" rx="3" stroke="var(--accent-b)" stroke-width="3"/><path d="M6 18h36" stroke="var(--accent-b)" stroke-width="2.5"/><rect x="12" y="24" width="10" height="8" rx="1.5" fill="var(--accent-b)" opacity=".5"/><rect x="26" y="24" width="10" height="4" rx="1.5" fill="var(--accent-b)" opacity=".5"/></svg>
+        </div>
+        <span>Projets</span>
+      </div>
+      <div class="desktop-icon" data-app="techwatch">
+        <div class="icon-img">
+          <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="16" stroke="var(--accent-c)" stroke-width="3"/><path d="M24 8v4M24 36v4M8 24h4M36 24h4" stroke="var(--accent-c)" stroke-width="2.5" stroke-linecap="round"/><circle cx="24" cy="24" r="5" fill="var(--accent-c)"/></svg>
+        </div>
+        <span>Veille Tech</span>
+      </div>
+      <div class="desktop-icon" data-app="e4skills">
+        <div class="icon-img">
+          <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="8" width="14" height="14" rx="2" fill="var(--accent-d)" opacity=".8"/><rect x="26" y="8" width="14" height="14" rx="2" fill="var(--accent-d)" opacity=".5"/><rect x="8" y="26" width="14" height="14" rx="2" fill="var(--accent-d)" opacity=".5"/><rect x="26" y="26" width="14" height="14" rx="2" fill="var(--accent-d)"/></svg>
+        </div>
+        <span>Compétences E4</span>
+      </div>
+      <div class="desktop-icon" data-app="cv">
+        <div class="icon-img">
+          <svg viewBox="0 0 48 48" fill="none"><rect x="10" y="4" width="28" height="40" rx="3" stroke="var(--accent-e)" stroke-width="3"/><path d="M16 14h16M16 21h16M16 28h10" stroke="var(--accent-e)" stroke-width="2.5" stroke-linecap="round"/></svg>
+        </div>
+        <span>CV & Diplômes</span>
+      </div>
+    </div>
+
+    <!-- Windows Container -->
+    <div id="windows-container"></div>
+  </div>
+
+  <!-- Taskbar -->
+  <div id="taskbar">
+    <div class="taskbar-left">
+      <div class="start-btn" id="start-btn">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" fill="currentColor"/><rect x="14" y="3" width="7" height="7" rx="1" fill="currentColor"/><rect x="3" y="14" width="7" height="7" rx="1" fill="currentColor"/><rect x="14" y="14" width="7" height="7" rx="1" fill="currentColor"/></svg>
+      </div>
+    </div>
+    <div class="taskbar-center" id="taskbar-apps"></div>
+    <div class="taskbar-right">
+      <button class="tb-btn" id="theme-toggle" title="Changer le thème">
+        <svg id="icon-dark" viewBox="0 0 24 24" fill="none"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" fill="currentColor"/></svg>
+        <svg id="icon-light" viewBox="0 0 24 24" fill="none" style="display:none"><circle cx="12" cy="12" r="5" fill="currentColor"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <div class="tb-clock" id="tb-clock">00:00</div>
+    </div>
+  </div>
+
+  <!-- Window Templates -->
+  <template id="tpl-window">
+    <div class="os-window" role="dialog">
+      <div class="win-titlebar">
+        <div class="win-controls">
+          <button class="win-btn win-close" title="Close">✕</button>
+          <button class="win-btn win-min" title="Minimize">−</button>
+          <button class="win-btn win-max" title="Maximize">□</button>
+        </div>
+        <span class="win-title"></span>
+        <div class="win-spacer"></div>
+      </div>
+      <div class="win-body"></div>
+    </div>
+  </template>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

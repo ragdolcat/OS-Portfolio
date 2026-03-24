@@ -1,0 +1,69 @@
+:root {
+  /* Accent palette */
+  --accent-a: #7DF9C4;
+  --accent-b: #6EC6FF;
+  --accent-c: #FFB347;
+  --accent-d: #CF9FFF;
+  --accent-e: #FF8FA3;
+
+  /* Font stacks */
+  --font-display: 'Syne', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-ui: 'Space Mono', monospace;
+
+  /* Motion */
+  --ease-spring: cubic-bezier(.34,1.56,.64,1);
+  --ease-smooth: cubic-bezier(.4,0,.2,1);
+
+  /* Sizes */
+  --taskbar-h: 52px;
+  --radius-win: 12px;
+  --radius-icon: 18px;
+  --win-shadow: 0 32px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.06);
+}
+
+/* DARK THEME (default) */
+[data-theme="dark"] {
+  --bg-desktop: #0d0f14;
+  --bg-glass: rgba(18, 20, 28, 0.72);
+  --bg-glass-heavy: rgba(14,16,22,0.88);
+  --bg-window: rgba(16,18,26,0.9);
+  --bg-sidebar: rgba(10,12,18,0.85);
+  --bg-card: rgba(255,255,255,0.04);
+  --bg-hover: rgba(255,255,255,0.07);
+  --bg-active: rgba(255,255,255,0.11);
+  --bg-taskbar: rgba(8,10,16,0.82);
+  --border: rgba(255,255,255,0.08);
+  --border-bright: rgba(255,255,255,0.14);
+  --text-primary: #eef0f7;
+  --text-secondary: rgba(238,240,247,0.55);
+  --text-muted: rgba(238,240,247,0.28);
+  --titlebar-bg: rgba(12,14,20,0.9);
+  --scrollbar: rgba(255,255,255,0.1);
+  --icon-bg: rgba(255,255,255,0.06);
+  --icon-bg-hover: rgba(255,255,255,0.12);
+  --wallpaper-overlay: rgba(10,12,18,0.45);
+}
+
+/* LIGHT THEME */
+[data-theme="light"] {
+  --bg-desktop: #dde3f0;
+  --bg-glass: rgba(240,244,255,0.72);
+  --bg-glass-heavy: rgba(235,240,252,0.92);
+  --bg-window: rgba(245,247,255,0.93);
+  --bg-sidebar: rgba(230,235,250,0.9);
+  --bg-card: rgba(0,0,0,0.04);
+  --bg-hover: rgba(0,0,0,0.05);
+  --bg-active: rgba(0,0,0,0.09);
+  --bg-taskbar: rgba(215,222,240,0.85);
+  --border: rgba(0,0,0,0.08);
+  --border-bright: rgba(0,0,0,0.14);
+  --text-primary: #12141e;
+  --text-secondary: rgba(18,20,30,0.58);
+  --text-muted: rgba(18,20,30,0.3);
+  --titlebar-bg: rgba(225,230,248,0.92);
+  --scrollbar: rgba(0,0,0,0.12);
+  --icon-bg: rgba(255,255,255,0.5);
+  --icon-bg-hover: rgba(255,255,255,0.8);
+  --wallpaper-overlay: rgba(180,190,215,0.3);
+}

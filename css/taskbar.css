@@ -1,0 +1,93 @@
+/* ===== TASKBAR ===== */
+#taskbar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  height: var(--taskbar-h);
+  background: var(--bg-taskbar);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-top: 1px solid var(--border-bright);
+  display: flex; align-items: center;
+  padding: 0 16px;
+  z-index: 900;
+  gap: 12px;
+}
+
+.taskbar-left { display: flex; align-items: center; flex-shrink: 0; }
+.taskbar-center {
+  flex: 1; display: flex; align-items: center;
+  justify-content: center; gap: 6px; overflow: hidden;
+}
+.taskbar-right {
+  display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+}
+
+/* Start button */
+.start-btn {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent-a), var(--accent-b));
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: transform .15s var(--ease-spring), box-shadow .15s ease;
+  box-shadow: 0 2px 12px rgba(126,249,196,.25);
+}
+.start-btn:hover { transform: scale(1.08); box-shadow: 0 4px 18px rgba(126,249,196,.35); }
+.start-btn svg { width: 16px; height: 16px; color: #080a10; }
+
+/* Taskbar app buttons */
+.tb-app-btn {
+  display: flex; align-items: center; gap: 7px;
+  padding: 5px 12px 5px 8px;
+  height: 36px; border-radius: 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-family: var(--font-mono); font-size: 11px;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+  position: relative;
+}
+.tb-app-btn:hover { background: var(--bg-hover); color: var(--text-primary); }
+.tb-app-btn.focused { background: var(--bg-active); color: var(--text-primary); border-color: var(--border-bright); }
+.tb-app-btn::after {
+  content: ''; position: absolute; bottom: -1px; left: 50%; transform: translateX(-50%);
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--accent-a); opacity: 0;
+  transition: opacity .15s;
+}
+.tb-app-btn.focused::after { opacity: 1; }
+.tb-app-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+/* Theme toggle */
+.tb-btn {
+  width: 34px; height: 34px; border-radius: 8px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  color: var(--text-secondary);
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s, color .15s;
+}
+.tb-btn:hover { background: var(--bg-hover); color: var(--text-primary); }
+.tb-btn svg { width: 15px; height: 15px; }
+
+/* Lang switcher */
+.lang-switcher {
+  display: flex; align-items: center; gap: 3px;
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--text-muted);
+}
+.lang-btn {
+  padding: 3px 6px; border-radius: 5px;
+  color: var(--text-secondary); font-size: 11px;
+  font-family: var(--font-mono);
+  transition: background .15s, color .15s;
+}
+.lang-btn:hover { background: var(--bg-hover); color: var(--text-primary); }
+.lang-btn.active { color: var(--accent-a); font-weight: 700; }
+
+/* Clock */
+.tb-clock {
+  font-family: var(--font-mono); font-size: 12px; font-weight: 700;
+  color: var(--text-secondary); letter-spacing: .05em;
+  padding: 4px 8px; background: var(--bg-card);
+  border: 1px solid var(--border); border-radius: 6px;
+  min-width: 52px; text-align: center;
+}
