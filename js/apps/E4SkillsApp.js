@@ -1,16 +1,13 @@
 /* ═══════════════════════════════════════════
-   E4 SKILLS APP — accordion + table view + file upload
+   E4 SKILLS APP — accordion + table view + PDF fixe
    ═══════════════════════════════════════════ */
 export class E4SkillsApp {
   constructor(wm) {
     this.wm = wm;
     this.id = 'e4skills';
     this._viewMode = 'accordion'; // 'accordion' | 'table'
-    this._fileData = null;
-    try {
-      const saved = sessionStorage.getItem('e4-file');
-      if (saved) this._fileData = JSON.parse(saved);
-    } catch(e) {}
+    // Fichier tableau de compétences fixe embarqué dans le projet
+    this._fileData = { url: 'img/Tableau_E4_Mesrine_Nolane.pdf', name: 'Tableau_E4_Mesrine_Nolane.pdf', type: 'application/pdf' };
   }
 
   open() {
@@ -130,27 +127,24 @@ export class E4SkillsApp {
             </button>`).join('')}
         </div>
 
-        <!-- File upload section -->
+        <!-- Tableau de compétences fixe -->
         <div style="margin-top:auto;padding-top:16px;border-top:1px solid var(--border)">
           <p style="font-family:var(--font-mono);font-size:9px;color:var(--text-muted);padding:0 5px;margin-bottom:10px;line-height:1.6">
             BTS SIO — Option SLAM<br>
             Épreuve E4 — Référentiel 2024<br>
             <span style="color:var(--accent-d)">5 domaines · 15 compétences</span>
           </p>
-          ${this._fileData
-            ? `<div class="e4-file-display">
-                 <span style="font-size:20px">📎</span>
-                 <span class="e4-file-display-name">${this._fileData.name}</span>
-                 <button class="e4-file-view-btn" id="e4-view-file-btn">Voir</button>
-               </div>
-               <div style="padding:0 5px">
-                 <button class="e4-proof-btn" id="e4-change-file-btn" style="font-size:10px;width:100%;justify-content:center">📂 Changer le fichier</button>
-               </div>`
-            : `<div class="e4-file-upload-zone" id="e4-upload-zone">
-                 📎 Joindre tableau de compétences<br>
-                 <span style="font-size:9px;opacity:.7">(PDF ou image)</span>
-               </div>`
-          }
+          <div class="e4-file-display">
+            <span style="font-size:20px">📎</span>
+            <span class="e4-file-display-name">Tableau_E4_Mesrine_Nolane.pdf</span>
+            <button class="e4-file-view-btn" id="e4-view-file-btn">Voir</button>
+          </div>
+          <div style="padding:0 5px">
+            <a class="e4-proof-btn" href="img/Tableau_E4_Mesrine_Nolane.pdf" download="Tableau_E4_Mesrine_Nolane.pdf"
+               style="font-size:10px;width:100%;justify-content:center;display:flex;text-decoration:none;">
+              ⬇ Télécharger
+            </a>
+          </div>
         </div>
       </aside>
 
@@ -267,58 +261,27 @@ export class E4SkillsApp {
       });
     });
 
-    // Accordion cards
+    // Accordion cards & proof modals
     win.addEventListener('click', (e) => {
       const head = e.target.closest('.e4-skill-head');
       if (head) head.closest('.e4-skill-card')?.classList.toggle('open');
 
-      const proofBtn = e.target.closest('.e4-proof-btn');
+      const proofBtn = e.target.closest('.e4-proof-btn[data-proof-title]');
       if (proofBtn) this._showProof(proofBtn.dataset.proofTitle, proofBtn.dataset.proofBody);
     });
 
-    // File upload
-    const uploadZone = win.querySelector('#e4-upload-zone');
-    uploadZone?.addEventListener('click', () => document.getElementById('e4-file-input')?.click());
-
-    const changeBtn = win.querySelector('#e4-change-file-btn');
-    changeBtn?.addEventListener('click', () => document.getElementById('e4-file-input')?.click());
-
-    const viewFileBtn = win.querySelector('#e4-view-file-btn');
-    viewFileBtn?.addEventListener('click', () => this._showFileModal());
-
-    const fileInput = document.getElementById('e4-file-input');
-    fileInput?.addEventListener('change', () => {
-      const file = fileInput.files[0];
-      if (file) this._loadFile(file, win);
-      fileInput.value = '';
-    });
-  }
-
-  _loadFile(file, win) {
-    const reader = new FileReader();
-    reader.onload = e => {
-      this._fileData = { url: e.target.result, name: file.name, type: file.type };
-      try { sessionStorage.setItem('e4-file', JSON.stringify(this._fileData)); } catch(ex) {}
-      // Refresh UI
-      win.querySelector('.win-body').innerHTML = this._html();
-      setTimeout(() => this._init(), 30);
-    };
-    reader.readAsDataURL(file);
+    // Bouton "Voir" le tableau de compétences PDF
+    win.querySelector('#e4-view-file-btn')?.addEventListener('click', () => this._showFileModal());
   }
 
   _showFileModal() {
-    if (!this._fileData) return;
     const overlay = document.createElement('div');
     overlay.className = 'proof-overlay';
-    const isPdf = this._fileData.type === 'application/pdf';
     overlay.innerHTML = `
       <div class="proof-modal" style="width:80vw;max-width:900px;height:80vh;display:flex;flex-direction:column">
-        <h3 style="flex-shrink:0">📎 ${this._fileData.name}</h3>
+        <h3 style="flex-shrink:0">📎 Tableau_E4_Mesrine_Nolane.pdf</h3>
         <div style="flex:1;overflow:hidden;border-radius:8px;margin-top:12px">
-          ${isPdf
-            ? `<iframe src="${this._fileData.url}" style="width:100%;height:100%;border:none;border-radius:8px"></iframe>`
-            : `<img src="${this._fileData.url}" alt="E4 document" style="max-width:100%;max-height:100%;object-fit:contain;display:block;margin:auto">`
-          }
+          <iframe src="img/Tableau_E4_Mesrine_Nolane.pdf" style="width:100%;height:100%;border:none;border-radius:8px"></iframe>
         </div>
         <div class="proof-modal-actions">
           <button class="proof-close-btn">Fermer</button>

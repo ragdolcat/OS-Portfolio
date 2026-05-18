@@ -4,6 +4,7 @@ import { TechWatchApp } from './apps/TechWatchApp.js';
 import { E4SkillsApp }  from './apps/E4SkillsApp.js';
 import { CVApp }        from './apps/CVApp.js';
 import { WallpaperApp } from './apps/WallpaperApp.js';
+import { SocialApp }    from './apps/SocialApp.js';
 
 export class AppRegistry {
   constructor(wm) {
@@ -15,6 +16,7 @@ export class AppRegistry {
       e4skills:  new E4SkillsApp(wm),
       cv:        new CVApp(wm),
       wallpaper: new WallpaperApp(wm),
+      social:    new SocialApp(wm),
     };
   }
 

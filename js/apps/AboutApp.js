@@ -19,7 +19,7 @@ export class AboutApp {
         <nav class="about-nav">
           <button class="about-nav-btn active" data-tab="bio">Biographie</button>
           <button class="about-nav-btn" data-tab="skills">Compétences</button>
-          <button class="about-nav-btn" data-tab="stats">Stats</button>
+          <button class="about-nav-btn" data-tab="xp">Expériences</button>
         </nav>
       </aside>
       <div class="about-content win-scroll">
@@ -82,13 +82,57 @@ export class AboutApp {
             </div>
           </div>
 
-          <div class="about-section" id="tab-stats">
-            <h2>En Chiffres</h2>
-            <div class="stat-grid">
-              <div class="stat-card"><div class="stat-num">2+</div><div class="stat-label">Années d'expérience</div></div>
-              <div class="stat-card"><div class="stat-num">18</div><div class="stat-label">Projets réalisés</div></div>
-              <div class="stat-card"><div class="stat-num">4k+</div><div class="stat-label">Commits Git</div></div>
-              <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Certifications</div></div>
+          <div class="about-section" id="tab-xp">
+            <h2>Expériences</h2>
+            <div class="xp-timeline">
+              <div class="xp-item">
+                <div class="xp-dot"></div>
+                <div class="xp-card">
+                  <div class="xp-header">
+                    <div>
+                      <div class="xp-title">Développeur Full-Stack — Alternance</div>
+                      <div class="xp-company">TechSolutions Paris</div>
+                    </div>
+                    <div class="xp-date">2024 – Présent</div>
+                  </div>
+                  <p class="xp-desc">Conception et maintenance d'applications web full-stack. Intégration de pipelines CI/CD, refactoring d'APIs Laravel, développement de composants Vue.js.</p>
+                  <div class="about-tags">
+                    <span class="about-tag">Laravel</span><span class="about-tag">Vue.js</span><span class="about-tag">Docker</span><span class="about-tag">GitHub Actions</span>
+                  </div>
+                </div>
+              </div>
+              <div class="xp-item">
+                <div class="xp-dot"></div>
+                <div class="xp-card">
+                  <div class="xp-header">
+                    <div>
+                      <div class="xp-title">Développeur Web — Stage</div>
+                      <div class="xp-company">Agence Digitale Lyonnaise</div>
+                    </div>
+                    <div class="xp-date">Été 2023</div>
+                  </div>
+                  <p class="xp-desc">Développement de sites vitrines et e-commerce sous WordPress et WooCommerce. Optimisation SEO et performance (Lighthouse 90+).</p>
+                  <div class="about-tags">
+                    <span class="about-tag">WordPress</span><span class="about-tag">PHP</span><span class="about-tag">JavaScript</span><span class="about-tag">SEO</span>
+                  </div>
+                </div>
+              </div>
+              <div class="xp-item">
+                <div class="xp-dot xp-dot--edu"></div>
+                <div class="xp-card">
+                  <div class="xp-header">
+                    <div>
+                      <div class="xp-title">BTS SIO — option SLAM</div>
+                      <div class="xp-company">Lycée Technique, Paris</div>
+                    </div>
+                    <div class="xp-date">2023 – 2025</div>
+                  </div>
+                  <p class="xp-desc">Formation en développement d'applications web et mobiles, administration réseau, gestion de projet Agile.</p>
+                  <div class="about-tags">
+                    <span class="about-tag">Python</span><span class="about-tag">SQL</span><span class="about-tag">Agile</span><span class="about-tag">Réseaux</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
