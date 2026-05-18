@@ -20,6 +20,12 @@ async function init() {
     taskbar.init();
     wallpaper.restore();
 
+    // Save CodeClicker state on window close
+    wm.on('closed', ({ id }) => {
+      const app = registry.apps[id];
+      if (app?.close) app.close();
+    });
+
     // Open "About Me" automatically on first launch
     setTimeout(() => registry.launch('about'), 120);
   });
