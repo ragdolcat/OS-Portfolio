@@ -1,200 +1,142 @@
+/* ═══════════════════════════════════════════
+   CV APP — PDF / image viewer with upload
+   ═══════════════════════════════════════════ */
 export class CVApp {
-  constructor(wm) { this.wm = wm; this.id = 'cv'; }
+  constructor(wm) {
+    this.wm = wm;
+    this.id = 'cv';
+    this._fileData = null; // { url, name, type }
+    // Restore from sessionStorage (stays during page session)
+    try {
+      const saved = sessionStorage.getItem('cv-file');
+      if (saved) this._fileData = JSON.parse(saved);
+    } catch(e) {}
+  }
 
   open() {
     if (this.wm.isOpen(this.id)) { this.wm.focus(this.id); this.wm.restore(this.id); return; }
-    this.wm.open(this.id, 'curriculum_vitae.pdf', this._html(), { width: 780, height: 620 });
+    this.wm.open(this.id, 'curriculum_vitae.pdf', this._html(), { width: 800, height: 620 });
+    setTimeout(() => this._init(), 50);
   }
 
   _html() {
+    const hasFile = !!this._fileData;
     return `
-    <div class="win-scroll">
-      <div class="cv-layout">
+    <div class="cv-viewer">
+      <div class="cv-viewer-toolbar">
+        <span class="cv-viewer-filename" id="cv-filename">
+          ${hasFile ? this._fileData.name : 'Aucun fichier chargé'}
+        </span>
+        <button class="cv-viewer-btn" id="cv-upload-btn">
+          📂 Charger CV (PDF / image)
+        </button>
+        ${hasFile ? `
+          <button class="cv-viewer-btn" id="cv-download-btn">
+            ⬇ Télécharger
+          </button>
+          <button class="cv-viewer-btn" id="cv-clear-btn" title="Retirer le fichier">✕</button>
+        ` : ''}
+      </div>
 
-        <!-- Header Card -->
-        <div class="cv-header-card">
-          <div class="cv-avatar-sm">AM</div>
-          <div class="cv-meta">
-            <h2>Alexandre Moreau</h2>
-            <p>Étudiant BTS SIO option SLAM — Développeur Full-Stack en alternance</p>
-            <div class="cv-contact">
-              <span class="cv-contact-item">📧 alexandre.moreau@email.com</span>
-              <span class="cv-contact-item">📍 Paris, France</span>
-              <span class="cv-contact-item">🔗 github.com/alexmoreau</span>
-              <span class="cv-contact-item">💼 linkedin.com/in/alexmoreau</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Experience -->
-        <div class="cv-section">
-          <div class="cv-section-title">Expérience professionnelle</div>
-          <div class="cv-exp">
-            <div class="cv-exp-item">
-              <div class="cv-exp-head">
-                <div>
-                  <div class="cv-exp-title">Développeur Full-Stack (Alternance)</div>
-                  <div class="cv-exp-company">TechSolutions Paris · CDI-alternance</div>
-                </div>
-                <div class="cv-exp-date">Sept. 2024 – Présent</div>
-              </div>
-              <div class="cv-exp-desc">
-                Développement et maintenance d'applications web internes en Laravel/Vue.js. 
-                Mise en place du pipeline CI/CD avec GitHub Actions. 
-                Support helpdesk N1/N2, gestion du parc informatique, participation aux cérémonies SCRUM.
-              </div>
-            </div>
-            <div class="cv-exp-item">
-              <div class="cv-exp-head">
-                <div>
-                  <div class="cv-exp-title">Stagiaire Développeur Web</div>
-                  <div class="cv-exp-company">Agence DigitalCraft · Stage 6 semaines</div>
-                </div>
-                <div class="cv-exp-date">Juin – Juil. 2024</div>
-              </div>
-              <div class="cv-exp-desc">
-                Développement d'un CMS sur-mesure en PHP/MySQL. 
-                Audit SEO et optimisation des performances de 3 sites clients. 
-                Formation des équipes éditoriales à l'utilisation du backoffice.
-              </div>
-            </div>
-            <div class="cv-exp-item">
-              <div class="cv-exp-head">
-                <div>
-                  <div class="cv-exp-title">Technicien Support (Stage)</div>
-                  <div class="cv-exp-company">Mairie du 11e arrondissement · Stage 4 semaines</div>
-                </div>
-                <div class="cv-exp-date">Jan. 2024</div>
-              </div>
-              <div class="cv-exp-desc">
-                Audit et inventaire du parc informatique (200+ postes) sous GLPI. 
-                Support utilisateur niveau 1, installation et configuration de postes Windows 11. 
-                Participation à la migration vers Microsoft 365.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Education -->
-        <div class="cv-section">
-          <div class="cv-section-title">Formation</div>
-          <div class="cv-exp">
-            <div class="cv-exp-item">
-              <div class="cv-exp-head">
-                <div>
-                  <div class="cv-exp-title">BTS SIO option SLAM</div>
-                  <div class="cv-exp-company">Lycée Victor Hugo, Paris 11e</div>
-                </div>
-                <div class="cv-exp-date">2023 – 2025</div>
-              </div>
-              <div class="cv-exp-desc">
-                Solutions Logicielles et Applications Métiers. Spécialisation développement web, 
-                bases de données, réseaux et gestion de projets informatiques. Moyenne générale : 16.4/20.
-              </div>
-            </div>
-            <div class="cv-exp-item">
-              <div class="cv-exp-head">
-                <div>
-                  <div class="cv-exp-title">Baccalauréat Général — NSI & Mathématiques</div>
-                  <div class="cv-exp-company">Lycée Voltaire, Paris 11e</div>
-                </div>
-                <div class="cv-exp-date">2023</div>
-              </div>
-              <div class="cv-exp-desc">Mention Très Bien — Spécialités Numérique & Sciences Informatiques et Mathématiques.</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Certifications -->
-        <div class="cv-section">
-          <div class="cv-section-title">Certifications</div>
-          <div class="cert-grid">
-            ${this._cert('🎓', 'PIX', 'Certification numérique nationale', '#FFB347', 'rgba(255,179,71,.1)')}
-            ${this._cert('☁️', 'AWS Cloud Practitioner', 'Amazon Web Services', '#6EC6FF', 'rgba(110,198,255,.1)')}
-            ${this._cert('🔒', 'Google Cybersecurity', 'Google / Coursera', '#FF8FA3', 'rgba(255,143,163,.1)')}
-            ${this._cert('🐧', 'Linux Essentials', 'LPI — Linux Professionnel', '#7DF9C4', 'rgba(126,249,196,.1)')}
-          </div>
-        </div>
-
-        <!-- Tech Skills -->
-        <div class="cv-section">
-          <div class="cv-section-title">Compétences techniques</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
-            <div>
-              <p style="font-family:var(--font-mono);font-size:10px;color:var(--text-muted);letter-spacing:.1em;margin-bottom:12px">LANGAGES & FRAMEWORKS</p>
-              <div class="skill-bars">
-                ${this._bar('JavaScript / TypeScript', 88, 'var(--accent-a)')}
-                ${this._bar('PHP / Laravel', 75, 'var(--accent-b)')}
-                ${this._bar('Python', 78, 'var(--accent-c)')}
-                ${this._bar('SQL / MySQL', 82, 'var(--accent-d)')}
-                ${this._bar('HTML / CSS', 93, 'var(--accent-e)')}
-              </div>
-            </div>
-            <div>
-              <p style="font-family:var(--font-mono);font-size:10px;color:var(--text-muted);letter-spacing:.1em;margin-bottom:12px">OUTILS & ENVIRONNEMENTS</p>
-              <div class="skill-bars">
-                ${this._bar('Git / GitHub Actions', 87, 'var(--accent-a)')}
-                ${this._bar('Docker / Linux', 70, 'var(--accent-b)')}
-                ${this._bar('Jira / Confluence', 80, 'var(--accent-c)')}
-                ${this._bar('VS Code / PhpStorm', 90, 'var(--accent-d)')}
-                ${this._bar('Figma / Design', 60, 'var(--accent-e)')}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Languages -->
-        <div class="cv-section">
-          <div class="cv-section-title">Langues</div>
-          <div style="display:flex;gap:12px;flex-wrap:wrap">
-            ${[
-              { lang: 'Français', level: 'Langue maternelle', pct: 100, color: 'var(--accent-a)' },
-              { lang: 'Anglais', level: 'B2 — Courant', pct: 78, color: 'var(--accent-b)' },
-              { lang: 'Espagnol', level: 'A2 — Notions', pct: 35, color: 'var(--accent-c)' },
-            ].map(l => `
-              <div style="flex:1;min-width:160px;padding:14px;border-radius:10px;background:var(--bg-card);border:1px solid var(--border)">
-                <div style="font-family:var(--font-display);font-weight:700;font-size:14px;color:var(--text-primary);margin-bottom:4px">${l.lang}</div>
-                <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-muted);margin-bottom:10px">${l.level}</div>
-                <div class="skill-bar-track"><div class="skill-bar-fill" style="width:${l.pct}%;background:${l.color}"></div></div>
-              </div>`).join('')}
-          </div>
-        </div>
-
-        <!-- Interests -->
-        <div class="cv-section">
-          <div class="cv-section-title">Centres d'intérêt</div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap">
-            ${['🧗 Rock Climbing', '🎮 Game Dev (Godot)', '🔐 CTF / Cybersécurité', '📚 Open Source', '🎵 Musique électronique', '✈️ Voyages'].map(i =>
-              `<span style="padding:6px 14px;border-radius:20px;background:var(--bg-card);border:1px solid var(--border);font-family:var(--font-mono);font-size:11px;color:var(--text-secondary)">${i}</span>`
-            ).join('')}
-          </div>
-        </div>
-
+      <div class="cv-viewer-content" id="cv-viewer-content">
+        ${hasFile ? this._renderFile() : this._renderPlaceholder()}
       </div>
     </div>`;
   }
 
-  _cert(emoji, name, org, color, bg) {
+  _renderPlaceholder() {
     return `
-    <div class="cert-card">
-      <div class="cert-badge" style="background:${bg};font-size:20px">${emoji}</div>
-      <div>
-        <div class="cert-name">${name}</div>
-        <div class="cert-org">${org}</div>
+    <div class="cv-placeholder">
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <rect x="10" y="4" width="28" height="40" rx="3"/>
+        <path d="M16 14h16M16 21h16M16 28h10"/>
+        <path d="M28 36l4-4 4 4M32 32v8" stroke-width="1.5"/>
+      </svg>
+      <div class="cv-placeholder-title">Charger votre CV</div>
+      <div class="cv-placeholder-sub">
+        Cliquez sur le bouton ci-dessus ou déposez un fichier ici.<br>
+        Formats acceptés : PDF, JPG, PNG, WebP
       </div>
+      <button class="cv-upload-btn-big" id="cv-placeholder-btn">
+        📂 Choisir un fichier
+      </button>
     </div>`;
   }
 
-  _bar(name, pct, color) {
-    return `
-    <div class="skill-bar-item">
-      <div class="skill-bar-meta">
-        <span class="skill-bar-name">${name}</span>
-        <span class="skill-bar-pct">${pct}%</span>
-      </div>
-      <div class="skill-bar-track">
-        <div class="skill-bar-fill" style="width:${pct}%;background:${color};animation-delay:${Math.random() * .4}s"></div>
-      </div>
-    </div>`;
+  _renderFile() {
+    const { url, type } = this._fileData;
+    if (type === 'application/pdf') {
+      return `<iframe src="${url}" title="CV PDF" style="width:100%;height:100%;border:none;"></iframe>`;
+    }
+    // Image
+    return `<img src="${url}" alt="CV" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:4px;display:block;margin:auto;">`;
+  }
+
+  _init() {
+    const win = document.querySelector(`.os-window[data-id="${this.id}"]`);
+    if (!win) return;
+
+    const fileInput   = document.getElementById('cv-file-input');
+    const uploadBtn   = win.querySelector('#cv-upload-btn');
+    const placeholderBtn = win.querySelector('#cv-placeholder-btn');
+    const downloadBtn = win.querySelector('#cv-download-btn');
+    const clearBtn    = win.querySelector('#cv-clear-btn');
+    const content     = win.querySelector('#cv-viewer-content');
+
+    const triggerUpload = () => fileInput?.click();
+    uploadBtn?.addEventListener('click', triggerUpload);
+    placeholderBtn?.addEventListener('click', triggerUpload);
+
+    // Drag & drop onto content area
+    content?.addEventListener('dragover', e => {
+      e.preventDefault();
+      content.style.outline = '2px dashed var(--accent-a)';
+    });
+    content?.addEventListener('dragleave', () => { content.style.outline = ''; });
+    content?.addEventListener('drop', e => {
+      e.preventDefault();
+      content.style.outline = '';
+      const file = e.dataTransfer.files[0];
+      if (file) this._loadFile(file, win);
+    });
+
+    // File input change
+    fileInput?.addEventListener('change', () => {
+      const file = fileInput.files[0];
+      if (file) this._loadFile(file, win);
+      fileInput.value = '';
+    });
+
+    // Download
+    downloadBtn?.addEventListener('click', () => {
+      if (!this._fileData) return;
+      const a = document.createElement('a');
+      a.href = this._fileData.url;
+      a.download = this._fileData.name;
+      a.click();
+    });
+
+    // Clear
+    clearBtn?.addEventListener('click', () => {
+      this._fileData = null;
+      sessionStorage.removeItem('cv-file');
+      this._refresh(win);
+    });
+  }
+
+  _loadFile(file, win) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      this._fileData = { url: e.target.result, name: file.name, type: file.type };
+      // Save to session (may fail for large files)
+      try { sessionStorage.setItem('cv-file', JSON.stringify(this._fileData)); } catch(ex) {}
+      this._refresh(win);
+    };
+    reader.readAsDataURL(file);
+  }
+
+  _refresh(win) {
+    win.querySelector('.win-body').innerHTML = this._html();
+    setTimeout(() => this._init(), 30);
   }
 }

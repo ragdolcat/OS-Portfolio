@@ -25,20 +25,36 @@ export class ProjectsApp {
         year: '2026'
       },
       {
-        name: 'MK-SWAP - Jeu',
-        desc: 'Interface de monitoring réseau avec détection d\'anomalies basée sur des seuils configurables. Notifications en temps réel, export PDF des rapports et historique des incidents.',
-        tags: ['PHP 8.2','Symfony', 'Doctrine ORM', 'Twig', 'MySQL'],
+        name: 'MK-SWAP - Jeu de plates-formes 3D',
+        desc: 'Jeu de plates-formes 3D développé en C# avec Unity dans le cadre de la Winter Melon Jam 2026. Mécanique de swap entre 3 masques conférant des pouvoirs différents.',
+        tags: ['C#', 'Unity', '3D', 'Game Development'],
         color: 'linear-gradient(90deg,var(--accent-b),var(--accent-d))',
-        link: 'https://github.com/ragdolcat/AlphaContest',
+        link: 'https://noodlestd.itch.io/mk-swap',
+        year: '2025'
+      },
+      {
+        name: 'Portfolio OS (Ce projet)',
+        desc: 'Interface portfolio imitant un OS desktop avec fenêtres draggables, gestion du focus, applications intégrées et thème sombre/clair. Vanilla JS modulaire, aucun framework.',
+        tags: ['HTML5', 'CSS3', 'Vanilla JS', 'ES Modules'],
+        color: 'linear-gradient(90deg,var(--accent-b),var(--accent-a))',
+        link: 'https://github.com/ragdolcat/OS-Portfolio',
         year: '2026'
       },
+      {
+        name: 'L\'Odyssée Numérique Éthique',
+        desc: 'Site web éducatif sur l\'éthique numérique dans le cadre de la nuit de l\'info 2025. Contenu interactif sur les enjeux de la vie privée, de la sécurité et de l\'impact environnemental du numérique.',
+        tags: ['HTML5', 'CSS3', 'Vanilla JS'],
+        color: 'linear-gradient(90deg,var(--accent-b),var(--accent-a))',
+        link: 'https://github.com/ragdolcat/L-Odyssee-Numerique-ethique',
+        year: '2025'
+      }
     ];
 
     return `
     <div class="win-body" style="display:flex;flex-direction:column;height:100%">
       <div class="app-header">
         <h1>Mes Projets</h1>
-        <p>// Double-cliquez sur une carte pour voir les détails</p>
+        <p>// Voici une liste de mes projets</p>
       </div>
       <div class="win-scroll">
         <div class="projects-grid">

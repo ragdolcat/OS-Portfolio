@@ -1,186 +1,113 @@
+/* ═══════════════════════════════════════════
+   E4 SKILLS APP — accordion + table view + file upload
+   ═══════════════════════════════════════════ */
 export class E4SkillsApp {
-  constructor(wm) { this.wm = wm; this.id = 'e4skills'; }
+  constructor(wm) {
+    this.wm = wm;
+    this.id = 'e4skills';
+    this._viewMode = 'accordion'; // 'accordion' | 'table'
+    this._fileData = null;
+    try {
+      const saved = sessionStorage.getItem('e4-file');
+      if (saved) this._fileData = JSON.parse(saved);
+    } catch(e) {}
+  }
 
   open() {
     if (this.wm.isOpen(this.id)) { this.wm.focus(this.id); this.wm.restore(this.id); return; }
-    this.wm.open(this.id, 'E4_Skills_Explorer.app', this._html(), { width: 960, height: 620 });
+    this.wm.open(this.id, 'E4_Compétences.app', this._html(), { width: 980, height: 640 });
     setTimeout(() => this._init(), 50);
   }
 
   _data() {
     return [
       {
-        id: 'assets',
-        icon: '🗄️',
-        label: 'Gestion du patrimoine',
+        id: 'assets', icon: '🗄️', label: 'Gestion du patrimoine',
         desc: 'Maîtrise des outils de versioning, documentation technique et workflows de gestion du parc informatique.',
         skills: [
-          {
-            name: 'Versioning avec Git',
-            level: 'Maîtrisé',
-            desc: 'Utilisation quotidienne de Git en environnement professionnel : branches feature/hotfix, pull requests, résolution de conflits, git flow. Mise en place de hooks pre-commit et intégration avec GitHub Actions.',
-            proof: {
-              title: 'Preuve : Gestion du dépôt TaskFlow',
-              body: 'Mise en place d\'un workflow Git complet sur le projet TaskFlow en alternance. Structure de branches : main / develop / feature/* / hotfix/*. Rédaction d\'un CONTRIBUTING.md, protection de la branche main avec obligation de PR et review. Plus de 800 commits sur 8 mois, avec messages conventionnels (Conventional Commits).'
-            }
+          { name: 'Versioning avec Git', level: 'Maîtrisé',
+            desc: 'Utilisation quotidienne de Git en environnement professionnel : branches feature/hotfix, pull requests, résolution de conflits, git flow.',
+            proof: { title: 'Preuve : Gestion du dépôt TaskFlow', body: 'Mise en place d\'un workflow Git complet sur le projet TaskFlow. Structure main/develop/feature/*/hotfix/*. Plus de 800 commits sur 8 mois avec messages conventionnels.' }
           },
-          {
-            name: 'Documentation technique',
-            level: 'Maîtrisé',
-            desc: 'Rédaction de documentation fonctionnelle et technique : README, guides d\'installation, manuels utilisateur, schémas d\'architecture (PlantUML, Draw.io). Utilisation de Confluence pour la documentation d\'équipe.',
-            proof: {
-              title: 'Preuve : Documentation API Inventory Management',
-              body: 'Rédaction complète de la documentation Swagger/OpenAPI pour l\'API REST de gestion du parc informatique. Couverture de 100% des endpoints, exemples de requêtes/réponses, guide d\'authentification JWT. Documentation hébergée sur GitHub Pages avec génération automatique via CI/CD.'
-            }
+          { name: 'Documentation technique', level: 'Maîtrisé',
+            desc: 'Rédaction de documentation fonctionnelle et technique : README, guides d\'installation, manuels utilisateur, schémas d\'architecture.',
+            proof: { title: 'Preuve : Documentation API Inventory Management', body: 'Rédaction complète de la documentation Swagger/OpenAPI pour l\'API REST de gestion du parc. Couverture de 100% des endpoints. Hébergée sur GitHub Pages.' }
           },
-          {
-            name: 'Gestion du parc & CMDB',
-            level: 'Opérationnel',
-            desc: 'Inventaire du parc matériel et logiciel, gestion des licences, suivi des garanties et des renouvellements. Utilisation d\'GLPI pour la CMDB et génération de rapports périodiques.',
-            proof: {
-              title: 'Preuve : Inventaire CMDB en stage',
-              body: 'Participation à l\'audit complet du parc informatique de 200+ postes lors du stage de 1ère année. Import des données dans GLPI, création de QR codes pour les équipements, mise en place d\'alertes automatiques pour les licences expirant sous 90 jours. Réduction des licences surnuméraires de 15%.'
-            }
+          { name: 'Gestion du parc & CMDB', level: 'Opérationnel',
+            desc: 'Inventaire du parc matériel et logiciel, gestion des licences, suivi des garanties. Utilisation de GLPI pour la CMDB.',
+            proof: { title: 'Preuve : Inventaire CMDB en stage', body: 'Audit complet de 200+ postes. Import dans GLPI, QR codes équipements, alertes licences. Réduction des licences surnuméraires de 15%.' }
           }
         ]
       },
       {
-        id: 'incidents',
-        icon: '🛠️',
-        label: 'Réponse aux incidents',
-        desc: 'Expérience en support utilisateur, ticketing, diagnostic et résolution d\'incidents de niveau 1 à 3.',
+        id: 'incidents', icon: '🛠️', label: 'Réponse aux incidents',
+        desc: 'Expérience en support utilisateur, ticketing, diagnostic et résolution d\'incidents N1 à N3.',
         skills: [
-          {
-            name: 'Gestion de tickets (ITSM)',
-            level: 'Maîtrisé',
-            desc: 'Traitement de tickets d\'incidents via GLPI et Jira Service Management. Priorisation selon la matrice Impact/Urgence ITIL, escalade vers les équipes N2/N3, suivi des SLA et communication proactive avec les utilisateurs.',
-            proof: {
-              title: 'Preuve : Support helpdesk en alternance',
-              body: 'Traitement de 40+ tickets/semaine sur la période octobre-décembre 2024. Taux de résolution au premier contact : 72%. SLA respecté à 94%. Création de 12 procédures de résolution documentées dans la base de connaissances interne, réduisant le temps moyen de résolution de 18 minutes.'
-            }
+          { name: 'Gestion de tickets (ITSM)', level: 'Maîtrisé',
+            desc: 'Traitement de tickets via GLPI et Jira Service Management. Priorisation ITIL, escalade N2/N3, suivi des SLA.',
+            proof: { title: 'Preuve : Support helpdesk en alternance', body: '40+ tickets/semaine. Taux de résolution premier contact : 72%. SLA respecté à 94%. 12 procédures documentées dans la base de connaissances.' }
           },
-          {
-            name: 'Diagnostic réseau & système',
-            level: 'Opérationnel',
-            desc: 'Diagnostic des problèmes réseau (ping, traceroute, nmap, Wireshark), analyse des logs système, vérification des services (systemctl, journalctl), dépannage DNS/DHCP et configuration VPN.',
-            proof: {
-              title: 'Preuve : Résolution d\'incident réseau critique',
-              body: 'Résolution d\'une panne réseau affectant 30 postes dans une filiale. Diagnostic via Wireshark : identification d\'un loop switching causé par une mauvaise configuration RSTP. Correction du port BPDU Guard sur le switch Cisco. Durée totale d\'intervention : 2h vs SLA de 4h. Rédaction du post-mortem complet.'
-            }
+          { name: 'Diagnostic réseau & système', level: 'Opérationnel',
+            desc: 'Diagnostic réseau (ping, traceroute, nmap, Wireshark), analyse des logs, dépannage DNS/DHCP, configuration VPN.',
+            proof: { title: 'Preuve : Résolution d\'incident réseau critique', body: 'Panne réseau 30 postes. Diagnostic Wireshark : loop switching RSTP. Correction port BPDU Guard Cisco. Intervention 2h vs SLA 4h.' }
           },
-          {
-            name: 'Assistance utilisateur',
-            level: 'Maîtrisé',
-            desc: 'Formation des utilisateurs sur les outils bureautiques et métier, rédaction de guides pratiques illustrés, animation de sessions de formation collectives (5-15 personnes), support à distance via TeamViewer/AnyDesk.',
-            proof: {
-              title: 'Preuve : Formation migration Microsoft 365',
-              body: 'Animation de 4 sessions de formation (12 utilisateurs chacune) lors de la migration Teams/SharePoint. Création d\'un support de 30 slides et d\'un guide de démarrage rapide. Questionnaire de satisfaction post-formation : 4.6/5. Réduction des tickets liés à M365 de 60% dans les 3 semaines suivantes.'
-            }
+          { name: 'Assistance utilisateur', level: 'Maîtrisé',
+            desc: 'Formation sur les outils bureautiques, rédaction de guides, animation de sessions (5-15 personnes), support à distance.',
+            proof: { title: 'Preuve : Formation migration Microsoft 365', body: '4 sessions de formation (12 utilisateurs chacune). Guide 30 slides. Satisfaction 4.6/5. Tickets M365 -60% dans les 3 semaines.' }
           }
         ]
       },
       {
-        id: 'online',
-        icon: '🌐',
-        label: 'Présence en ligne',
-        desc: 'Compétences en CMS, référencement naturel, analyse web et évolution des sites institutionnels.',
+        id: 'online', icon: '🌐', label: 'Présence en ligne',
+        desc: 'Compétences en CMS, référencement naturel, analyse web et évolution de sites institutionnels.',
         skills: [
-          {
-            name: 'CMS & Gestion de contenu',
-            level: 'Maîtrisé',
-            desc: 'Développement et administration de sites sous WordPress (thèmes enfants, plugins personnalisés, WooCommerce) et Drupal. Création d\'un CMS maison en PHP/MySQL pour un client associatif. Gestion des accès contributeurs et formation éditoriale.',
-            proof: {
-              title: 'Preuve : CMS Institutionnel (Projet)',
-              body: 'Développement complet d\'un CMS sur-mesure en PHP/MySQL pour l\'association Maison de Quartier Belleville. Interface d\'administration WYSIWYG avec TinyMCE, gestion des médias avec redimensionnement automatique, workflow de publication avec validation rédacteur → administrateur. 8 contributeurs formés, 150+ articles publiés depuis le lancement.'
-            }
+          { name: 'CMS & Gestion de contenu', level: 'Maîtrisé',
+            desc: 'WordPress (thèmes enfants, plugins, WooCommerce), Drupal, CMS maison en PHP/MySQL. Gestion des accès et formation éditoriale.',
+            proof: { title: 'Preuve : CMS Institutionnel', body: 'CMS sur-mesure PHP/MySQL pour association Maison de Quartier Belleville. WYSIWYG TinyMCE, gestion médias. 8 contributeurs formés, 150+ articles.' }
           },
-          {
-            name: 'SEO & Analytics',
-            level: 'Opérationnel',
-            desc: 'Audit SEO technique (Core Web Vitals, balises structurées, sitemap, robots.txt), utilisation de Google Search Console et Google Analytics 4. Intégration de Schema.org et optimisation des performances (Lighthouse score 90+).',
-            proof: {
-              title: 'Preuve : Audit SEO et amélioration des performances',
-              body: 'Audit complet du site WordPress d\'un client e-commerce : score Lighthouse initial 42/100. Actions : compression images WebP, lazy loading, minification CSS/JS, implémentation cache Redis, balises Open Graph. Score final : 91/100. Trafic organique +34% en 3 mois selon Google Analytics 4.'
-            }
+          { name: 'SEO & Analytics', level: 'Opérationnel',
+            desc: 'Audit SEO technique (Core Web Vitals, balises structurées, sitemap), Google Search Console, Google Analytics 4.',
+            proof: { title: 'Preuve : Audit SEO et performances', body: 'Site e-commerce : Lighthouse 42 → 91/100. Images WebP, lazy loading, cache Redis. Trafic organique +34% en 3 mois.' }
           },
-          {
-            name: 'Évolution & maintenance web',
-            level: 'Opérationnel',
-            desc: 'Maintenance évolutive et corrective de sites web existants, gestion des mises à jour plugins/thèmes, sauvegardes automatisées, monitoring uptime et alertes Sentry pour les erreurs front/back.',
-            proof: {
-              title: 'Preuve : Maintenance parc web en alternance',
-              body: 'Responsable de la maintenance de 6 sites clients en alternance. Mise en place d\'un pipeline de mises à jour hebdomadaires avec environnement de staging. Configuration de Sentry pour le monitoring d\'erreurs JavaScript. Zéro incident de production majeur sur la période de 12 mois grâce aux sauvegardes automatisées quotidiennes.'
-            }
+          { name: 'Évolution & maintenance web', level: 'Opérationnel',
+            desc: 'Maintenance évolutive/corrective, mises à jour plugins/thèmes, sauvegardes automatisées, monitoring Sentry.',
+            proof: { title: 'Preuve : Maintenance parc web', body: '6 sites clients en alternance. Pipeline mises à jour hebdomadaires, environnement staging. Zéro incident majeur en 12 mois.' }
           }
         ]
       },
       {
-        id: 'project',
-        icon: '📋',
-        label: 'Mode Projet',
-        desc: 'Méthodologies Agile/SCRUM, planification Gantt, collaboration d\'équipe et outils de gestion de projet.',
+        id: 'project', icon: '📋', label: 'Mode Projet',
+        desc: 'Méthodologies Agile/SCRUM, planification Gantt, collaboration d\'équipe et outils de gestion.',
         skills: [
-          {
-            name: 'Agile / SCRUM',
-            level: 'Maîtrisé',
-            desc: 'Participation active aux cérémonies SCRUM : sprint planning, daily stand-up, sprint review et rétrospective. Rôle de Scrum Master junior sur le projet TaskFlow. Utilisation du velocity chart pour l\'estimation et le suivi des sprints de 2 semaines.',
-            proof: {
-              title: 'Preuve : Projet TaskFlow en méthode SCRUM',
-              body: 'Chef de projet sur TaskFlow (équipe de 4 développeurs). Mise en place du board Kanban dans Jira, définition de la Definition of Done, rédaction des user stories avec critères d\'acceptance. 6 sprints de 2 semaines complétés. Velocity stabilisée à 32 points/sprint après 3 itérations. Livraison dans les délais avec 98% du backlog initial complété.'
-            }
+          { name: 'Agile / SCRUM', level: 'Maîtrisé',
+            desc: 'Cérémonies SCRUM : sprint planning, daily, review, rétrospective. Rôle Scrum Master junior. Velocity chart.',
+            proof: { title: 'Preuve : Projet TaskFlow SCRUM', body: 'Chef de projet (4 développeurs). Board Jira, Definition of Done. 6 sprints. Velocity 32 pts/sprint. Livraison dans les délais, 98% backlog.' }
           },
-          {
-            name: 'Planification (Gantt / Notion)',
-            level: 'Opérationnel',
-            desc: 'Création et suivi de diagrammes de Gantt pour la planification de projets (GanttProject, Excel, Notion). Identification des chemins critiques, gestion des dépendances entre tâches et ajustement du planning en cas de dérive.',
-            proof: {
-              title: 'Preuve : Planning projet CMS Institutionnel',
-              body: 'Rédaction du cahier des charges et planification complète du projet CMS sur 6 semaines. Diagramme de Gantt avec 4 jalons (maquettes → développement → recette → livraison), identification de 2 tâches sur le chemin critique. Respect du planning à 95%, un retard de 2 jours sur la phase de recette absorbé par la marge prévue.'
-            }
+          { name: 'Planification (Gantt / Notion)', level: 'Opérationnel',
+            desc: 'Diagrammes de Gantt (GanttProject, Notion), chemins critiques, gestion des dépendances.',
+            proof: { title: 'Preuve : Planning CMS Institutionnel', body: 'Cahier des charges + Gantt 6 semaines, 4 jalons, 2 tâches chemin critique. Respect planning 95%.' }
           },
-          {
-            name: 'Collaboration & outils d\'équipe',
-            level: 'Maîtrisé',
-            desc: 'Utilisation quotidienne de Jira, Confluence, Notion, Trello et Slack en contexte professionnel. Rédaction de comptes-rendus de réunion, animation de kick-off, partage de connaissances et revue de code collaborative.',
-            proof: {
-              title: 'Preuve : Collaboration multi-équipe en alternance',
-              body: 'Travail en mode projet avec 3 équipes distinctes (dev, infra, métier) via Confluence et Slack. Rédaction de 20+ comptes-rendus de réunion, animation de 2 ateliers de refinement backlog. Mise en place d\'un espace Notion centralisé pour le knowledge management de l\'équipe dev (30+ pages documentées).'
-            }
+          { name: 'Collaboration & outils d\'équipe', level: 'Maîtrisé',
+            desc: 'Jira, Confluence, Notion, Trello, Slack en contexte professionnel. Comptes-rendus, kick-off, revue de code.',
+            proof: { title: 'Preuve : Collaboration multi-équipe', body: '3 équipes (dev/infra/métier) via Confluence et Slack. 20+ CR réunion. Espace Notion knowledge management (30+ pages).' }
           }
         ]
       },
       {
-        id: 'deploy',
-        icon: '🚀',
-        label: 'Déploiement & Tests',
-        desc: 'Tests d\'intégration, déploiement continu, formation utilisateur et pratiques DevOps modernes.',
+        id: 'deploy', icon: '🚀', label: 'Déploiement & Tests',
+        desc: 'Tests d\'intégration, déploiement continu, formation utilisateur et pratiques DevOps.',
         skills: [
-          {
-            name: 'Tests & Qualité logicielle',
-            level: 'Opérationnel',
-            desc: 'Rédaction de tests unitaires (PHPUnit, Jest) et de tests d\'intégration (Postman, Cypress). Couverture de code mesurée via Istanbul/nyc. Participation aux recettes utilisateur (UAT) et rédaction de procès-verbaux de recette.',
-            proof: {
-              title: 'Preuve : Suite de tests API Inventory',
-              body: 'Mise en place d\'une suite de tests complète pour l\'API REST : 87 tests unitaires avec PHPUnit (couverture 78%), 23 tests d\'intégration via Postman/Newman exécutés automatiquement dans le pipeline CI. Recette utilisateur avec 5 testeurs métier : 3 bugs critiques détectés et corrigés avant la livraison en production.'
-            }
+          { name: 'Tests & Qualité logicielle', level: 'Opérationnel',
+            desc: 'Tests unitaires (PHPUnit, Jest), intégration (Postman, Cypress), UAT, PV de recette.',
+            proof: { title: 'Preuve : Suite de tests API Inventory', body: '87 tests unitaires (couverture 78%), 23 tests intégration Postman/Newman en CI. 3 bugs critiques détectés avant livraison.' }
           },
-          {
-            name: 'CI/CD & DevOps',
-            level: 'Opérationnel',
-            desc: 'Mise en place de pipelines CI/CD avec GitHub Actions et GitLab CI. Containerisation avec Docker et Docker Compose, déploiement sur VPS Linux (Ubuntu), configuration Nginx comme reverse proxy, gestion des certificats SSL avec Let\'s Encrypt.',
-            proof: {
-              title: 'Preuve : Pipeline CI/CD complet (Projet)',
-              body: 'Architecture DevOps complète pour le projet TaskFlow : build Docker → tests automatisés → analyse statique SonarQube → déploiement staging → déploiement production avec approbation manuelle. Temps de déploiement : 4 minutes. Rollback automatique si le health check échoue après déploiement. Uptime production : 99.7% sur 6 mois.'
-            }
+          { name: 'CI/CD & DevOps', level: 'Opérationnel',
+            desc: 'GitHub Actions, GitLab CI, Docker Compose, VPS Linux, Nginx reverse proxy, SSL Let\'s Encrypt.',
+            proof: { title: 'Preuve : Pipeline CI/CD complet', body: 'Docker → tests → SonarQube → staging → prod avec approbation. Déploiement 4min. Rollback auto. Uptime 99.7% sur 6 mois.' }
           },
-          {
-            name: 'Formation & conduite du changement',
-            level: 'Opérationnel',
-            desc: 'Conception de supports pédagogiques (slides, guides PDF, vidéos tutoriels), animation de formations en présentiel et à distance, recueil des retours et itération sur les contenus. Accompagnement au changement lors des migrations et nouvelles implémentations.',
-            proof: {
-              title: 'Preuve : Formation déploiement TaskFlow',
-              body: 'Conception et animation d\'une formation de 3h pour 15 utilisateurs finaux lors du déploiement de TaskFlow. Création d\'un manuel utilisateur illustré (28 pages), de 5 tutoriels vidéo (2-4 min chacun) hébergés sur l\'intranet. Score d\'adoption à J+30 : 89% des utilisateurs actifs quotidiennement (vs objectif de 75%).'
-            }
+          { name: 'Formation & conduite du changement', level: 'Opérationnel',
+            desc: 'Supports pédagogiques (slides, PDF, vidéos), formations présentiel/distanciel, accompagnement migration.',
+            proof: { title: 'Preuve : Formation déploiement TaskFlow', body: '3h pour 15 utilisateurs. Manuel 28 pages, 5 tutos vidéo. Score adoption J+30 : 89% (vs objectif 75%).' }
           }
         ]
       }
@@ -189,6 +116,7 @@ export class E4SkillsApp {
 
   _html() {
     const cats = this._data();
+    const isTable = this._viewMode === 'table';
     return `
     <div class="e4-layout" style="height:100%">
       <aside class="e4-sidebar">
@@ -201,22 +129,48 @@ export class E4SkillsApp {
               <span class="e4-cat-count">${c.skills.length}</span>
             </button>`).join('')}
         </div>
-        <div style="margin-top:auto;padding-top:20px;border-top:1px solid var(--border);margin-top:20px">
-          <p style="font-family:var(--font-mono);font-size:9px;color:var(--text-muted);line-height:1.6;padding:0 5px">
+
+        <!-- File upload section -->
+        <div style="margin-top:auto;padding-top:16px;border-top:1px solid var(--border)">
+          <p style="font-family:var(--font-mono);font-size:9px;color:var(--text-muted);padding:0 5px;margin-bottom:10px;line-height:1.6">
             BTS SIO — Option SLAM<br>
             Épreuve E4 — Référentiel 2024<br>
             <span style="color:var(--accent-d)">5 domaines · 15 compétences</span>
           </p>
+          ${this._fileData
+            ? `<div class="e4-file-display">
+                 <span style="font-size:20px">📎</span>
+                 <span class="e4-file-display-name">${this._fileData.name}</span>
+                 <button class="e4-file-view-btn" id="e4-view-file-btn">Voir</button>
+               </div>
+               <div style="padding:0 5px">
+                 <button class="e4-proof-btn" id="e4-change-file-btn" style="font-size:10px;width:100%;justify-content:center">📂 Changer le fichier</button>
+               </div>`
+            : `<div class="e4-file-upload-zone" id="e4-upload-zone">
+                 📎 Joindre tableau de compétences<br>
+                 <span style="font-size:9px;opacity:.7">(PDF ou image)</span>
+               </div>`
+          }
         </div>
       </aside>
-      <div class="e4-content">
+
+      <div class="e4-content" style="display:flex;flex-direction:column;">
+        <!-- View toggle -->
+        <div class="e4-view-toggle">
+          <button class="e4-toggle-btn ${!isTable ? 'active' : ''}" data-view="accordion">Détails</button>
+          <button class="e4-toggle-btn ${isTable ? 'active' : ''}"  data-view="table">Tableau</button>
+        </div>
+
         ${cats.map((c, i) => `
-          <div class="e4-panel ${i === 0 ? 'active' : ''}" data-panel="${c.id}">
+          <div class="e4-panel ${i === 0 ? 'active' : ''}" data-panel="${c.id}"
+               style="flex:1;overflow:hidden;display:${i === 0 ? 'flex' : 'none'};flex-direction:column;">
             <div class="e4-panel-header">
               <h2>${c.icon} ${c.label}</h2>
               <p>${c.desc}</p>
             </div>
-            <div class="win-scroll">
+
+            <!-- Accordion view -->
+            <div class="e4-accordion-view win-scroll" style="display:${!isTable ? 'block' : 'none'}">
               <div class="e4-skills-list">
                 ${c.skills.map(s => `
                   <div class="e4-skill-card">
@@ -228,16 +182,61 @@ export class E4SkillsApp {
                     <div class="e4-skill-body">
                       <p>${s.desc}</p>
                       <button class="e4-proof-btn"
-                        data-proof-title="${s.proof.title.replace(/"/g, '&quot;')}"
-                        data-proof-body="${s.proof.body.replace(/"/g, '&quot;')}">
+                        data-proof-title="${s.proof.title.replace(/"/g,'&quot;')}"
+                        data-proof-body="${s.proof.body.replace(/"/g,'&quot;')}">
                         📎 Voir la preuve / Réalisation
                       </button>
                     </div>
                   </div>`).join('')}
               </div>
             </div>
+
+            <!-- Table view (all categories) -->
+            <div class="e4-table-view win-scroll" style="display:${isTable ? 'block' : 'none'};flex:1;">
+              ${this._buildFullTable()}
+            </div>
           </div>`).join('')}
       </div>
+    </div>`;
+  }
+
+  _buildFullTable() {
+    const cats = this._data();
+    const rows = cats.flatMap(cat =>
+      cat.skills.map((s, si) => ({ cat, skill: s, firstInCat: si === 0, catLen: cat.skills.length }))
+    );
+    return `
+    <div class="e4-table-wrapper">
+      <table class="e4-table">
+        <thead>
+          <tr>
+            <th>Domaine</th>
+            <th>Compétence</th>
+            <th>Niveau</th>
+            <th>Description</th>
+            <th>Preuve</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows.map(r => `
+            <tr>
+              ${r.firstInCat ? `<td class="td-cat" rowspan="${r.catLen}">${r.cat.icon} ${r.cat.label}</td>` : ''}
+              <td class="td-skill">${r.skill.name}</td>
+              <td class="td-level">
+                <span class="e4-level-pill ${r.skill.level === 'Maîtrisé' ? 'maitrise' : ''}">${r.skill.level}</span>
+              </td>
+              <td>${r.skill.desc}</td>
+              <td class="td-proof">
+                <div class="e4-proof-short">${r.skill.proof.body}</div>
+                <button class="e4-proof-btn" style="margin-top:6px;font-size:9px"
+                  data-proof-title="${r.skill.proof.title.replace(/"/g,'&quot;')}"
+                  data-proof-body="${r.skill.proof.body.replace(/"/g,'&quot;')}">
+                  Voir
+                </button>
+              </td>
+            </tr>`).join('')}
+        </tbody>
+      </table>
     </div>`;
   }
 
@@ -245,30 +244,89 @@ export class E4SkillsApp {
     const win = document.querySelector(`.os-window[data-id="${this.id}"]`);
     if (!win) return;
 
+    // View toggle (accordion / table)
+    win.querySelectorAll('.e4-toggle-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        this._viewMode = btn.dataset.view;
+        win.querySelectorAll('.e4-toggle-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const isTable = this._viewMode === 'table';
+        win.querySelectorAll('.e4-accordion-view').forEach(v => v.style.display = isTable ? 'none' : 'block');
+        win.querySelectorAll('.e4-table-view').forEach(v => v.style.display = isTable ? 'block' : 'none');
+      });
+    });
+
     // Category switching
     win.querySelectorAll('.e4-cat-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         win.querySelectorAll('.e4-cat-btn').forEach(b => b.classList.remove('active'));
-        win.querySelectorAll('.e4-panel').forEach(p => p.classList.remove('active'));
+        win.querySelectorAll('.e4-panel').forEach(p => { p.classList.remove('active'); p.style.display = 'none'; });
         btn.classList.add('active');
-        win.querySelector(`.e4-panel[data-panel="${btn.dataset.cat}"]`)?.classList.add('active');
+        const panel = win.querySelector(`.e4-panel[data-panel="${btn.dataset.cat}"]`);
+        if (panel) { panel.classList.add('active'); panel.style.display = 'flex'; }
       });
     });
 
-    // Skill card accordion
+    // Accordion cards
     win.addEventListener('click', (e) => {
       const head = e.target.closest('.e4-skill-head');
-      if (head) {
-        const card = head.closest('.e4-skill-card');
-        card.classList.toggle('open');
-      }
+      if (head) head.closest('.e4-skill-card')?.classList.toggle('open');
 
-      // Proof modal
       const proofBtn = e.target.closest('.e4-proof-btn');
-      if (proofBtn) {
-        this._showProof(proofBtn.dataset.proofTitle, proofBtn.dataset.proofBody);
-      }
+      if (proofBtn) this._showProof(proofBtn.dataset.proofTitle, proofBtn.dataset.proofBody);
     });
+
+    // File upload
+    const uploadZone = win.querySelector('#e4-upload-zone');
+    uploadZone?.addEventListener('click', () => document.getElementById('e4-file-input')?.click());
+
+    const changeBtn = win.querySelector('#e4-change-file-btn');
+    changeBtn?.addEventListener('click', () => document.getElementById('e4-file-input')?.click());
+
+    const viewFileBtn = win.querySelector('#e4-view-file-btn');
+    viewFileBtn?.addEventListener('click', () => this._showFileModal());
+
+    const fileInput = document.getElementById('e4-file-input');
+    fileInput?.addEventListener('change', () => {
+      const file = fileInput.files[0];
+      if (file) this._loadFile(file, win);
+      fileInput.value = '';
+    });
+  }
+
+  _loadFile(file, win) {
+    const reader = new FileReader();
+    reader.onload = e => {
+      this._fileData = { url: e.target.result, name: file.name, type: file.type };
+      try { sessionStorage.setItem('e4-file', JSON.stringify(this._fileData)); } catch(ex) {}
+      // Refresh UI
+      win.querySelector('.win-body').innerHTML = this._html();
+      setTimeout(() => this._init(), 30);
+    };
+    reader.readAsDataURL(file);
+  }
+
+  _showFileModal() {
+    if (!this._fileData) return;
+    const overlay = document.createElement('div');
+    overlay.className = 'proof-overlay';
+    const isPdf = this._fileData.type === 'application/pdf';
+    overlay.innerHTML = `
+      <div class="proof-modal" style="width:80vw;max-width:900px;height:80vh;display:flex;flex-direction:column">
+        <h3 style="flex-shrink:0">📎 ${this._fileData.name}</h3>
+        <div style="flex:1;overflow:hidden;border-radius:8px;margin-top:12px">
+          ${isPdf
+            ? `<iframe src="${this._fileData.url}" style="width:100%;height:100%;border:none;border-radius:8px"></iframe>`
+            : `<img src="${this._fileData.url}" alt="E4 document" style="max-width:100%;max-height:100%;object-fit:contain;display:block;margin:auto">`
+          }
+        </div>
+        <div class="proof-modal-actions">
+          <button class="proof-close-btn">Fermer</button>
+        </div>
+      </div>`;
+    document.body.appendChild(overlay);
+    overlay.querySelector('.proof-close-btn').addEventListener('click', () => overlay.remove());
+    overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
   }
 
   _showProof(title, body) {
@@ -284,6 +342,6 @@ export class E4SkillsApp {
       </div>`;
     document.body.appendChild(overlay);
     overlay.querySelector('.proof-close-btn').addEventListener('click', () => overlay.remove());
-    overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
+    overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
   }
 }

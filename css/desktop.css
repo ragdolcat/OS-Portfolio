@@ -50,6 +50,7 @@
 
 /* Wallpaper */
 #wallpaper {
+  transition: background .6s ease, opacity .4s ease;
   position: absolute; inset: 0;
   background:
     radial-gradient(ellipse 80% 60% at 20% 80%, rgba(126,249,196,0.13) 0%, transparent 55%),
@@ -59,6 +60,7 @@
   z-index: 0;
 }
 [data-theme="light"] #wallpaper {
+  transition: background .6s ease, opacity .4s ease;
   background:
     radial-gradient(ellipse 80% 60% at 20% 80%, rgba(126,249,196,0.18) 0%, transparent 55%),
     radial-gradient(ellipse 60% 50% at 80% 20%, rgba(110,198,255,0.2) 0%, transparent 50%),

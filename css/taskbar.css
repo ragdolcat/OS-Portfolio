@@ -91,3 +91,9 @@
   border: 1px solid var(--border); border-radius: 6px;
   min-width: 52px; text-align: center;
 }
+
+/* Start button active state */
+.start-btn.active {
+  box-shadow: 0 0 0 2px rgba(126,249,196,.5), 0 4px 18px rgba(126,249,196,.35);
+  transform: scale(1.05);
+}
