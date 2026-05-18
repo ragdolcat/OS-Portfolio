@@ -10,48 +10,70 @@ export class TechWatchApp {
   _html() {
     const cats = [
       { id: 'all', label: 'Tout', color: 'var(--accent-a)' },
-      { id: 'ai', label: 'IA & ML', color: 'var(--accent-b)' },
-      { id: 'web', label: 'Web Dev', color: 'var(--accent-c)' },
-      { id: 'security', label: 'Cybersécurité', color: 'var(--accent-e)' },
-      { id: 'devops', label: 'DevOps', color: 'var(--accent-d)' },
+      { id: 'ARM', label: 'Architecture ARM', color: 'var(--accent-b)' },
+      { id: 'RISC-V', label: 'Architecture RISC-V', color: 'var(--accent-b)' },
     ];
 
     const articles = [
       {
-        cat: 'ai', catLabel: 'IA & ML', color: 'var(--accent-b)',
-        date: 'Juin 2025', date_bg: 'rgba(110,198,255,.1)',
-        title: 'Claude 4 et le raisonnement long-contexte',
-        desc: 'Anthropic publie Claude 4, avec une fenêtre de contexte étendue à 200k tokens et de nouvelles capacités de raisonnement étape par étape. Les implications pour le développement logiciel sont considérables : revue de code complète d\'une codebase entière en une seule requête.',
+        cat: 'ARM',
+        catLabel: 'Architecture ARM',
+        color: 'var(--accent-c)',
+        date: 'Mai 2026',
+        date_bg: 'rgba(255,179,71,.1)',
+        title: 'Armv9.7-A : les nouveautés architecture 2025-2026',
+        desc: 'Mise à jour majeure de l\'architecture A-Profile avec de nouvelles instructions SVE et SME pour les données 6-bit, optimisées pour l\'IA embarquée et les performances vectorielles.',
+        link: 'https://developer.arm.com/community/arm-community-blogs/b/architectures-and-processors-blog/posts/arm-a-profile-architecture-developments-2025'
       },
       {
-        cat: 'web', catLabel: 'Web Dev', color: 'var(--accent-c)',
-        date: 'Mai 2025', date_bg: 'rgba(255,179,71,.1)',
-        title: 'CSS Anchor Positioning — La fin des dropdowns JavaScript',
-        desc: 'La spécification CSS Anchor Positioning atteint sa maturité dans Chrome 125+. Elle permet de positionner des éléments flottants relativement à un "ancre" DOM, sans une ligne de JS. Tooltip, dropdown, popover : tout devient du CSS natif.',
+        cat: 'RISC-V',
+        catLabel: 'Architecture RISC-V',
+        color: 'var(--accent-c)',
+        date: 'Avr. 2026',
+        date_bg: 'rgba(255,179,71,.1)',
+        title: 'RISC-V 2026 Update : RVA23, IA et adoption massive',
+        desc: 'Revue complète des avancées RISC-V avec la ratification RVA23, les extensions vectorielles pour l\'IA, l\'arrivée d\'Ubuntu optimisé et la progression dans l\'automobile et les serveurs.',
+        link: 'https://www.youtube.com/watch?v=z6gHC-R59lw'
       },
       {
-        cat: 'security', catLabel: 'Cybersécurité', color: 'var(--accent-e)',
-        date: 'Avr. 2025', date_bg: 'rgba(255,143,163,.1)',
-        title: 'Faille critique dans OpenSSH : CVE-2025-0281',
-        desc: 'Une vulnérabilité d\'exécution de code à distance (RCE) affecte les versions d\'OpenSSH antérieures à 9.8. Les serveurs Linux exposés sur Internet sont directement concernés. Mise à jour immédiate recommandée et audit des clés autorisées.',
+        cat: 'ARM',
+        catLabel: 'Architecture ARM',
+        color: 'var(--accent-c)',
+        date: 'Mars 2026',
+        date_bg: 'rgba(255,179,71,.1)',
+        title: 'Arm vs RISC-V en 2025-2026 : qui va dominer ?',
+        desc: 'Comparaison approfondie des deux architectures : customisation RISC-V vs écosystème mature ARM, avec focus sur l\'IA, l\'efficacité énergétique et les déploiements cloud/edge.',
+        link: 'https://www.linkedin.com/pulse/arm-vs-risc-v-2025-which-architecture-define-future-florous-ph-d--o0aaf'
       },
       {
-        cat: 'devops', catLabel: 'DevOps', color: 'var(--accent-d)',
-        date: 'Mar. 2025', date_bg: 'rgba(207,159,255,.1)',
-        title: 'Docker 26 : Build Cache persistant et Compose Watch',
-        desc: 'Docker 26 introduit un cache de build persistant entre les machines via un registre distant, réduisant drastiquement les temps CI. La fonctionnalité Compose Watch recharge automatiquement les services lors de modifications fichier, similaire au HMR frontend.',
+        cat: 'RISC-V',
+        catLabel: 'Architecture RISC-V',
+        color: 'var(--accent-c)',
+        date: 'Fév. 2026',
+        date_bg: 'rgba(255,179,71,.1)',
+        title: 'RISC-V atteint la maturité : Linux prêt pour l\'adoption large',
+        desc: 'Canonical annonce qu\'Ubuntu 26.04 LTS rend RISC-V prêt pour la production à grande échelle avec le profil RVA23, rivalisant avec ARM et x86 dans les serveurs et edge.',
+        link: 'https://www.howtogeek.com/risc-v-linux-will-be-ready-for-wide-adoption-in-2026-says-canonical/'
       },
       {
-        cat: 'ai', catLabel: 'IA & ML', color: 'var(--accent-b)',
-        date: 'Mar. 2025', date_bg: 'rgba(110,198,255,.1)',
-        title: 'LLMs dans le code : GitHub Copilot X vs Cursor vs Codeium',
-        desc: 'Comparatif des assistants IA de code : GitHub Copilot X intègre GPT-4 et propose la revue de PR automatique. Cursor se distingue par ses modifications "diff" directement dans l\'éditeur. Codeium reste gratuit et supporte 70+ langages.',
-      },
+        cat: 'ARM',
+        catLabel: 'Architecture ARM',
+        color: 'var(--accent-c)',
+        date: 'Janv. 2026',
+        date_bg: 'rgba(255,179,71,.1)',
+        title: 'Innovations ARM : Lumex et Compute Subsystems pour l\'IA',
+        desc: 'Architecture Lumex optimisée IA intégrant CPU/GPU/NPU, et avancée des Compute Subsystems qui accélèrent le time-to-market pour les partenaires comme Google et Samsung.',
+        link: 'https://www.marketresearchfuture.com/news/arm-introduces-ai-optimized-chip-architecture-in-2025'
+    },
       {
-        cat: 'web', catLabel: 'Web Dev', color: 'var(--accent-c)',
-        date: 'Fév. 2025', date_bg: 'rgba(255,179,71,.1)',
-        title: 'Next.js 15 et React Server Components : retour d\'expérience',
-        desc: 'Après plusieurs mois de production avec RSC, les retours terrain révèlent à la fois des gains de performance significatifs (TTI -40%) et une complexité mentale accrue. Le modèle "server-first" nécessite de repenser complètement la gestion d\'état.',
+        cat: 'RISC-V',
+        catLabel: 'Architecture RISC-V',
+        color: 'var(--accent-c)',
+        date: 'Mars 2026',
+        date_bg: 'rgba(255,179,71,.1)',
+        title: 'RISC-V dans l\'automobile et l\'IA : Embedded World 2026',
+        desc: 'Nouvelles puces automotive-grade et IP IA-native (vector + matrix) chez SiFive, Andes et Infineon, montrant la montée en puissance de RISC-V dans les systèmes critiques.',
+        link: 'https://riscv.org/blog/embedded-world-2026/'
       },
     ];
 
@@ -78,7 +100,7 @@ export class TechWatchApp {
               </div>
               <h3>${a.title}</h3>
               <p>${a.desc}</p>
-              <span class="tw-read-more">→ Lire l'article complet</span>
+              <a href="${a.link}" class="tw-read-more">→ Lire l'article complet</a>
             </article>`).join('')}
         </div>
       </div>

@@ -11,9 +11,9 @@ export class AboutApp {
     return `
     <div class="about-layout">
       <aside class="about-sidebar">
-        <div class="about-avatar">AM</div>
+        <div class="about-avatar">NM</div>
         <div>
-          <div class="about-name">Alexandre Moreau</div>
+          <div class="about-name">Nolane Mesrine</div>
           <div class="about-role">// BTS SIO · SLAM</div>
         </div>
         <nav class="about-nav">
@@ -27,7 +27,7 @@ export class AboutApp {
 
           <div class="about-section active" id="tab-bio">
             <h2>Hello, World! 👋</h2>
-            <p>Je suis <strong>Alexandre Moreau</strong>, étudiant en BTS SIO option SLAM passionné par le développement web, l'open source et les systèmes modernes. Actuellement en alternance chez TechSolutions Paris, je conçois et maintiens des applications full-stack au quotidien.</p>
+            <p>Je suis <strong>Nolane Mesrine</strong>, étudiant en BTS SIO option SLAM passionné par le développement, l'open source et les systèmes modernes. Actuellement en alternance chez TechSolutions Paris, je conçois et maintiens des applications full-stack au quotidien.</p>
             <p>Ma philosophie : écrire du code lisible, documenter correctement, et toujours chercher l'outil le plus adapté au problème plutôt que de forcer un marteau sur une vis.</p>
             <p>En dehors du code, je pratique le rock climbing et je contribue à quelques projets open source liés à la cybersécurité.</p>
             <div class="about-tags">
