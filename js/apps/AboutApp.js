@@ -27,9 +27,9 @@ export class AboutApp {
 
           <div class="about-section active" id="tab-bio">
             <h2>Hello, World! 👋</h2>
-            <p>Je suis <strong>Nolane Mesrine</strong>, étudiant en BTS SIO option SLAM passionné par le développement web, l'open source et les systèmes modernes. Actuellement en alternance chez TechSolutions Paris, je conçois et maintiens des applications full-stack au quotidien.</p>
-            <p>Ma philosophie : écrire du code lisible, documenter correctement, et toujours chercher l'outil le plus adapté au problème plutôt que de forcer un marteau sur une vis.</p>
-            <p>En dehors du code, je pratique le rock climbing et je contribue à quelques projets open source liés à la cybersécurité.</p>
+            <p>Je suis <strong>Nolane Mesrine</strong>, étudiant en BTS SIO option SLAM passionné par le développement Applicatifs, l'open source et les systèmes modernes. Actuellement en recherche d'alternance, je suis à la recherche d'une opportunité pour développer mes compétences et contribuer à des projets innovants.</p>
+            <p>Ma philosophie : Structurer le plus possible son code pour qu'il soit maintenable et chercher toujours l'outil le plus adapté au problème plutôt que de forcer un marteau sur une vis.</p>
+            <p>En dehors du code, je fait de la photographie et j'écoute de la musique.</p>
             <div class="about-tags">
               <span class="about-tag">C#</span><span class="about-tag">WPF</span><span class="about-tag">Java</span><span class="about-tag">Python</span>
               <span class="about-tag">PHP/symfony</span><span class="about-tag">Docker</span>
@@ -54,6 +54,7 @@ export class AboutApp {
                 <span class="about-tag">SQL</span>
                 <span class="about-tag">Bash</span>
                 <span class="about-tag">ST</span>
+                <span class="about-tag">Modbus</span>
               </div>
             </div>
             <div class="skills-group">
@@ -81,14 +82,14 @@ export class AboutApp {
                 <div class="xp-card">
                   <div class="xp-header">
                     <div>
-                      <div class="xp-title">Développeur Full-Stack — Alternance</div>
+                      <div class="xp-title">Développeur Back-End — Stage</div>
                       <div class="xp-company">TechSolutions Paris</div>
                     </div>
-                    <div class="xp-date">2024 – Présent</div>
+                    <div class="xp-date">Janv 2026 – Mars 2026</div>
                   </div>
-                  <p class="xp-desc">Conception et maintenance d'applications web full-stack. Intégration de pipelines CI/CD, refactoring d'APIs Laravel, développement de composants Vue.js.</p>
+                  <p class="xp-desc">Intégration et modification d'un PLC avec CODESYS sur une application de contrôle industriel faite en WPF avec Modbus.</p>
                   <div class="about-tags">
-                    <span class="about-tag">Laravel</span><span class="about-tag">Vue.js</span><span class="about-tag">Docker</span><span class="about-tag">GitHub Actions</span>
+                    <span class="about-tag">C#</span><span class="about-tag">WPF</span><span class="about-tag">CODESYS</span><span class="about-tag">ST</span><span class="about-tag">Modbus</span>
                   </div>
                 </div>
               </div>
@@ -97,14 +98,14 @@ export class AboutApp {
                 <div class="xp-card">
                   <div class="xp-header">
                     <div>
-                      <div class="xp-title">Développeur Web — Stage</div>
-                      <div class="xp-company">Agence Digitale Lyonnaise</div>
+                      <div class="xp-title">CyberSécurité — Stage</div>
+                      <div class="xp-company">centre de gestion de la fonction publique territoriale des Deux-Sèvres</div>
                     </div>
-                    <div class="xp-date">Été 2023</div>
+                    <div class="xp-date">Mai 2025 - Juin 2025</div>
                   </div>
-                  <p class="xp-desc">Développement de sites vitrines et e-commerce sous WordPress et WooCommerce. Optimisation SEO et performance (Lighthouse 90+).</p>
+                  <p class="xp-desc">Mise en place d'un campagne de sensibilisation à la cybersécurité avec des outils de communication et de formation. Mise en place de fausse campagne de phishing.</p>
                   <div class="about-tags">
-                    <span class="about-tag">WordPress</span><span class="about-tag">PHP</span><span class="about-tag">JavaScript</span><span class="about-tag">SEO</span>
+                    <span class="about-tag">CyberSécurité</span><span class="about-tag">Prévention</span><span class="about-tag">Phishing</span><span class="about-tag">Communication</span>
                   </div>
                 </div>
               </div>
@@ -114,13 +115,13 @@ export class AboutApp {
                   <div class="xp-header">
                     <div>
                       <div class="xp-title">BTS SIO — option SLAM</div>
-                      <div class="xp-company">Lycée Technique, Paris</div>
+                      <div class="xp-company">Lycée Générale et technologique de la Venise Verte, Niort</div>
                     </div>
-                    <div class="xp-date">2023 – 2025</div>
+                    <div class="xp-date">2024 – 2026</div>
                   </div>
-                  <p class="xp-desc">Formation en développement d'applications web et mobiles, administration réseau, gestion de projet Agile.</p>
+                  <p class="xp-desc">Formation en développement d'applications, administration réseau, gestion de projet.</p>
                   <div class="about-tags">
-                    <span class="about-tag">Python</span><span class="about-tag">SQL</span><span class="about-tag">Agile</span><span class="about-tag">Réseaux</span>
+                    <span class="about-tag">Java</span><span class="about-tag">PHP</span><span class="about-tag">SQL</span><span class="about-tag">Gestion de projets</span><span class="about-tag">Réseaux</span>
                   </div>
                 </div>
               </div>
