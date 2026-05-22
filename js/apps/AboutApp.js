@@ -83,7 +83,7 @@ export class AboutApp {
                   <div class="xp-header">
                     <div>
                       <div class="xp-title">Développeur Back-End — Stage</div>
-                      <div class="xp-company">TechSolutions Paris</div>
+                      <div class="xp-company">Agileo Automation</div>
                     </div>
                     <div class="xp-date">Janv 2026 – Mars 2026</div>
                   </div>
@@ -99,7 +99,7 @@ export class AboutApp {
                   <div class="xp-header">
                     <div>
                       <div class="xp-title">CyberSécurité — Stage</div>
-                      <div class="xp-company">centre de gestion de la fonction publique territoriale des Deux-Sèvres</div>
+                      <div class="xp-company">Centre de Gestion de la fonction publique territoriale des Deux-Sèvres</div>
                     </div>
                     <div class="xp-date">Mai 2025 - Juin 2025</div>
                   </div>
