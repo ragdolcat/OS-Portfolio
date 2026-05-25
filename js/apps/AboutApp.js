@@ -20,6 +20,7 @@ export class AboutApp {
           <button class="about-nav-btn active" data-tab="bio">Biographie</button>
           <button class="about-nav-btn" data-tab="skills">Compétences</button>
           <button class="about-nav-btn" data-tab="xp">Expériences</button>
+          <button class="about-nav-btn" data-tab="fm">Formations</button>
         </nav>
       </aside>
       <div class="about-content win-scroll">
@@ -110,6 +111,59 @@ export class AboutApp {
                 </div>
               </div>
               <div class="xp-item">
+                <div class="xp-dot"></div>
+                <div class="xp-card">
+                  <div class="xp-header">
+                    <div>
+                      <div class="xp-title">Maintenance Informatiques — Stage</div>
+                      <div class="xp-company">Mediaconcept</div>
+                    </div>
+                    <div class="xp-date">Décembre 2023</div>
+                  </div>
+                  <p class="xp-desc">Maintenance informatique. Assemblage, installation et configuration de systèmes. Configuration de NAS.</p>
+                  <div class="about-tags">
+                    <span class="about-tag">Maintenance</span><span class="about-tag">Windows</span><span class="about-tag">Synology</span>
+                  </div>
+                </div>
+              </div>
+              <div class="xp-item">
+                <div class="xp-dot"></div>
+                <div class="xp-card">
+                  <div class="xp-header">
+                    <div>
+                      <div class="xp-title">Maintenance Réseaux Informatiques — Stage</div>
+                      <div class="xp-company">Ihdem</div>
+                    </div>
+                    <div class="xp-date">Juin 2023</div>
+                  </div>
+                  <p class="xp-desc">Programation web, maintenance de réseaux informatiques.</p>
+                  <div class="about-tags">
+                    <span class="about-tag">HTML</span><span class="about-tag">CSS</span><span class="about-tag">Linux (Debian)</span><span class="about-tag">Proxmox</span><span class="about-tag">Nginx</span><span class="about-tag">Ubiquiti</span>
+                  </div>
+                </div>
+              </div>
+              <div class="xp-item">
+                <div class="xp-dot"></div>
+                <div class="xp-card">
+                  <div class="xp-header">
+                    <div>
+                      <div class="xp-title">Maintenance Informatiques — Stage</div>
+                      <div class="xp-company">CM Info</div>
+                    </div>
+                    <div class="xp-date">Janvier 2023</div>
+                  </div>
+                  <p class="xp-desc">Maintenance informatique et téléphonique. Assemblage, installation et configuration de systèmes.</p>
+                  <div class="about-tags">
+                    <span class="about-tag">Maintenance</span><span class="about-tag">Windows</span><span class="about-tag">MacOS</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="about-section" id="tab-fm">
+            <h2>Formations</h2>
+            <div class="xp-timeline">
+              <div class="xp-item">
                 <div class="xp-dot xp-dot--edu"></div>
                 <div class="xp-card">
                   <div class="xp-header">
@@ -122,6 +176,22 @@ export class AboutApp {
                   <p class="xp-desc">Formation en développement d'applications, administration réseau, gestion de projet.</p>
                   <div class="about-tags">
                     <span class="about-tag">Java</span><span class="about-tag">PHP</span><span class="about-tag">SQL</span><span class="about-tag">Gestion de projets</span><span class="about-tag">Réseaux</span>
+                  </div>
+                </div>
+              </div>
+              <div class="xp-item">
+                <div class="xp-dot xp-dot--edu"></div>
+                <div class="xp-card">
+                  <div class="xp-header">
+                    <div>
+                      <div class="xp-title">BAC Professionnel Systèmes Numériques — option ARED</div>
+                      <div class="xp-company">Lycée Professionnel Pierre-André Chabanne, Chasseneuil-sur-Bonnieure</div>
+                    </div>
+                    <div class="xp-date">2021 – 2024</div>
+                  </div>
+                  <p class="xp-desc">Formation en maintenance informatique et électroménager, Installation de systèmes audio et vidéo.</p>
+                  <div class="about-tags">
+                    <span class="about-tag">Mention TB</span><span class="about-tag">Maintenance</span><span class="about-tag">Installation de systèmes</span>
                   </div>
                 </div>
               </div>

@@ -16,9 +16,9 @@ export class AppRegistry {
       techwatch:   new TechWatchApp(wm),
       e4skills:    new E4SkillsApp(wm),
       cv:          new CVApp(wm),
-      wallpaper:   new WallpaperApp(wm),
       social:      new SocialApp(wm),
       codeclicker: new CodeClickerApp(wm),
+      wallpaper:   new WallpaperApp(wm),
     };
   }
 

@@ -23,16 +23,16 @@ export class E4SkillsApp {
         desc: 'Maîtrise des outils de versioning, documentation technique et workflows de gestion du parc informatique.',
         skills: [
           { name: 'Versioning avec Git', level: 'Maîtrisé',
-            desc: 'Utilisation quotidienne de Git en environnement professionnel : branches feature/hotfix, pull requests, résolution de conflits, git flow.',
-            proof: { title: 'Preuve : Gestion du dépôt TaskFlow', body: 'Mise en place d\'un workflow Git complet sur le projet TaskFlow. Structure main/develop/feature/*/hotfix/*. Plus de 800 commits sur 8 mois avec messages conventionnels.' }
+            desc: 'Utilisation quotidienne de Git sur les Projets Java et PHP.',
+            proof: { title: '', body: '' }
           },
           { name: 'Documentation technique', level: 'Maîtrisé',
-            desc: 'Rédaction de documentation fonctionnelle et technique : README, guides d\'installation, manuels utilisateur, schémas d\'architecture.',
-            proof: { title: 'Preuve : Documentation API Inventory Management', body: 'Rédaction complète de la documentation Swagger/OpenAPI pour l\'API REST de gestion du parc. Couverture de 100% des endpoints. Hébergée sur GitHub Pages.' }
+            desc: 'Rédaction de documentation fonctionnelle et technique sur les projets Java et PHP : README, guides d\'installation, manuels utilisateur, schémas d\'architecture.',
+              proof: { title: '', body: '' }  
           },
-          { name: 'Gestion du parc & CMDB', level: 'Opérationnel',
-            desc: 'Inventaire du parc matériel et logiciel, gestion des licences, suivi des garanties. Utilisation de GLPI pour la CMDB.',
-            proof: { title: 'Preuve : Inventaire CMDB en stage', body: 'Audit complet de 200+ postes. Import dans GLPI, QR codes équipements, alertes licences. Réduction des licences surnuméraires de 15%.' }
+          { name: 'Gestion du parc ', level: 'Opérationnel',
+            desc: 'Inventaire du parc matériel et résolution de problèmes sur GLPI lors de mon stage au CDG79.',
+            proof: { title: '', body: '' }
           }
         ]
       },
@@ -40,35 +40,27 @@ export class E4SkillsApp {
         id: 'incidents', icon: '🛠️', label: 'Réponse aux incidents',
         desc: 'Expérience en support utilisateur, ticketing, diagnostic et résolution d\'incidents N1 à N3.',
         skills: [
-          { name: 'Gestion de tickets (ITSM)', level: 'Maîtrisé',
-            desc: 'Traitement de tickets via GLPI et Jira Service Management. Priorisation ITIL, escalade N2/N3, suivi des SLA.',
-            proof: { title: 'Preuve : Support helpdesk en alternance', body: '40+ tickets/semaine. Taux de résolution premier contact : 72%. SLA respecté à 94%. 12 procédures documentées dans la base de connaissances.' }
-          },
-          { name: 'Diagnostic réseau & système', level: 'Opérationnel',
-            desc: 'Diagnostic réseau (ping, traceroute, nmap, Wireshark), analyse des logs, dépannage DNS/DHCP, configuration VPN.',
-            proof: { title: 'Preuve : Résolution d\'incident réseau critique', body: 'Panne réseau 30 postes. Diagnostic Wireshark : loop switching RSTP. Correction port BPDU Guard Cisco. Intervention 2h vs SLA 4h.' }
+          { name: 'Diagnostic réseau & système', level: 'Maîtrisé',
+            desc: 'Diagnostic réseau (ping, Wireshark), analyse des logs, lors de ma formation de BTS SIO.',
+            proof: { title: '', body: '' }  
           },
           { name: 'Assistance utilisateur', level: 'Maîtrisé',
-            desc: 'Formation sur les outils bureautiques, rédaction de guides, animation de sessions (5-15 personnes), support à distance.',
-            proof: { title: 'Preuve : Formation migration Microsoft 365', body: '4 sessions de formation (12 utilisateurs chacune). Guide 30 slides. Satisfaction 4.6/5. Tickets M365 -60% dans les 3 semaines.' }
+            desc: 'support présentiel sur l\'installation de windows lors de mon stage a Agileo Automation.',
+            proof: { title: '', body: '' }  
           }
         ]
       },
       {
         id: 'online', icon: '🌐', label: 'Présence en ligne',
-        desc: 'Compétences en CMS, référencement naturel, analyse web et évolution de sites institutionnels.',
+        desc: 'Compétences en CMS, analyse web et évolution de sites institutionnels.',
         skills: [
           { name: 'CMS & Gestion de contenu', level: 'Maîtrisé',
-            desc: 'WordPress (thèmes enfants, plugins, WooCommerce), Drupal, CMS maison en PHP/MySQL. Gestion des accès et formation éditoriale.',
-            proof: { title: 'Preuve : CMS Institutionnel', body: 'CMS sur-mesure PHP/MySQL pour association Maison de Quartier Belleville. WYSIWYG TinyMCE, gestion médias. 8 contributeurs formés, 150+ articles.' }
-          },
-          { name: 'SEO & Analytics', level: 'Opérationnel',
-            desc: 'Audit SEO technique (Core Web Vitals, balises structurées, sitemap), Google Search Console, Google Analytics 4.',
-            proof: { title: 'Preuve : Audit SEO et performances', body: 'Site e-commerce : Lighthouse 42 → 91/100. Images WebP, lazy loading, cache Redis. Trafic organique +34% en 3 mois.' }
+            desc: 'WordPress (thèmes enfants, plugins) Lors de ma formation de BTS SIO.',
+            proof: { title: '', body: '' }
           },
           { name: 'Évolution & maintenance web', level: 'Opérationnel',
-            desc: 'Maintenance évolutive/corrective, mises à jour plugins/thèmes, sauvegardes automatisées, monitoring Sentry.',
-            proof: { title: 'Preuve : Maintenance parc web', body: '6 sites clients en alternance. Pipeline mises à jour hebdomadaires, environnement staging. Zéro incident majeur en 12 mois.' }
+            desc: 'Maintenance évolutive/corrective, sauvegardes automatisées pour mon portfolio.',
+            proof: { title: '', body: '' }
           }
         ]
       },
@@ -78,33 +70,25 @@ export class E4SkillsApp {
         skills: [
           { name: 'Agile / SCRUM', level: 'Maîtrisé',
             desc: 'Cérémonies SCRUM : sprint planning, daily, review, rétrospective. Rôle Scrum Master junior. Velocity chart.',
-            proof: { title: 'Preuve : Projet TaskFlow SCRUM', body: 'Chef de projet (4 développeurs). Board Jira, Definition of Done. 6 sprints. Velocity 32 pts/sprint. Livraison dans les délais, 98% backlog.' }
-          },
-          { name: 'Planification (Gantt / Notion)', level: 'Opérationnel',
-            desc: 'Diagrammes de Gantt (GanttProject, Notion), chemins critiques, gestion des dépendances.',
-            proof: { title: 'Preuve : Planning CMS Institutionnel', body: 'Cahier des charges + Gantt 6 semaines, 4 jalons, 2 tâches chemin critique. Respect planning 95%.' }
+            proof: { title: '', body: '' }
           },
           { name: 'Collaboration & outils d\'équipe', level: 'Maîtrisé',
             desc: 'Jira, Confluence, Notion, Trello, Slack en contexte professionnel. Comptes-rendus, kick-off, revue de code.',
-            proof: { title: 'Preuve : Collaboration multi-équipe', body: '3 équipes (dev/infra/métier) via Confluence et Slack. 20+ CR réunion. Espace Notion knowledge management (30+ pages).' }
+            proof: { title: '', body: '' }
           }
         ]
       },
       {
-        id: 'deploy', icon: '🚀', label: 'Déploiement & Tests',
+        id: 'deploy', icon: '🚀', label: 'Mettre à disposition des utilisateurs un service informatiques',
         desc: 'Tests d\'intégration, déploiement continu, formation utilisateur et pratiques DevOps.',
         skills: [
           { name: 'Tests & Qualité logicielle', level: 'Opérationnel',
             desc: 'Tests unitaires (PHPUnit, Jest), intégration (Postman, Cypress), UAT, PV de recette.',
-            proof: { title: 'Preuve : Suite de tests API Inventory', body: '87 tests unitaires (couverture 78%), 23 tests intégration Postman/Newman en CI. 3 bugs critiques détectés avant livraison.' }
-          },
-          { name: 'CI/CD & DevOps', level: 'Opérationnel',
-            desc: 'GitHub Actions, GitLab CI, Docker Compose, VPS Linux, Nginx reverse proxy, SSL Let\'s Encrypt.',
-            proof: { title: 'Preuve : Pipeline CI/CD complet', body: 'Docker → tests → SonarQube → staging → prod avec approbation. Déploiement 4min. Rollback auto. Uptime 99.7% sur 6 mois.' }
+            proof: { title: '', body: '' }
           },
           { name: 'Formation & conduite du changement', level: 'Opérationnel',
             desc: 'Supports pédagogiques (slides, PDF, vidéos), formations présentiel/distanciel, accompagnement migration.',
-            proof: { title: 'Preuve : Formation déploiement TaskFlow', body: '3h pour 15 utilisateurs. Manuel 28 pages, 5 tutos vidéo. Score adoption J+30 : 89% (vs objectif 75%).' }
+            proof: { title: '', body: '' }
           }
         ]
       }
@@ -175,11 +159,6 @@ export class E4SkillsApp {
                     </div>
                     <div class="e4-skill-body">
                       <p>${s.desc}</p>
-                      <button class="e4-proof-btn"
-                        data-proof-title="${s.proof.title.replace(/"/g,'&quot;')}"
-                        data-proof-body="${s.proof.body.replace(/"/g,'&quot;')}">
-                        📎 Voir la preuve / Réalisation
-                      </button>
                     </div>
                   </div>`).join('')}
               </div>
