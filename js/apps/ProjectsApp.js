@@ -35,7 +35,7 @@ export class ProjectsApp {
       {
         name: 'Portfolio OS (Ce projet)',
         desc: 'Interface portfolio imitant un OS desktop avec fenêtres draggables, gestion du focus, applications intégrées et thème sombre/clair. Vanilla JS modulaire, aucun framework.',
-        tags: ['HTML5', 'CSS3', 'Vanilla JS', 'ES Modules'],
+        tags: ['HTML5', 'CSS', 'Vanilla JS'],
         color: 'linear-gradient(90deg,var(--accent-b),var(--accent-a))',
         link: 'https://github.com/ragdolcat/OS-Portfolio',
         year: '2026'
@@ -43,7 +43,7 @@ export class ProjectsApp {
       {
         name: 'L\'Odyssée Numérique Éthique',
         desc: 'Site web éducatif sur l\'éthique numérique dans le cadre de la nuit de l\'info 2025. Contenu interactif sur les enjeux de la vie privée, de la sécurité et de l\'impact environnemental du numérique.',
-        tags: ['HTML5', 'CSS3', 'Vanilla JS'],
+        tags: ['HTML5', 'CSS', 'Vanilla JS'],
         color: 'linear-gradient(90deg,var(--accent-b),var(--accent-a))',
         link: 'https://github.com/ragdolcat/L-Odyssee-Numerique-ethique',
         year: '2025'
