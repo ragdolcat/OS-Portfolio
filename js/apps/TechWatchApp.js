@@ -88,7 +88,7 @@ export class TechWatchApp {
       </aside>
       <div class="win-scroll" style="flex:1">
         <div class="tw-header" style="padding:16px 24px 12px;border-bottom:1px solid var(--border)">
-          <h2 style="font-family:var(--font-display);font-weight:800;font-size:18px;color:var(--text-primary)">Veille Technologique</h2>
+          <a href="https://canva.link/0y8877nlh64kjbv" style="font-family:var(--font-display);font-weight:800;font-size:18px;color:var(--text-primary)">Veille Technologique</a>
           <p style="font-family:var(--font-mono);font-size:11px;color:var(--text-muted);margin-top:4px">// SLAM — Surveillance des tendances tech 2024-2025</p>
         </div>
         <div id="tw-feed">
